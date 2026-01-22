@@ -91,19 +91,16 @@ function AnimatedCounter({ value, suffix = '', prefix = '', duration = 2 }) {
 
 // Slide wrapper component
 function Slide({ children, id, className = '' }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-20%" })
-
   return (
     <section
-      ref={ref}
       id={id}
       className={`slide ${className}`}
     >
       <motion.div
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        variants={staggerContainer}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         className="container"
       >
         {children}
@@ -116,10 +113,12 @@ function Slide({ children, id, className = '' }) {
 function GlassCard({ children, className = '', delay = 0, hover = true }) {
   return (
     <motion.div
-      variants={fadeInUp}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: delay / 1000 }}
       className={`glass-card ${className}`}
       whileHover={hover ? { y: -8, transition: { duration: 0.3 } } : {}}
-      style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
     </motion.div>
@@ -131,15 +130,34 @@ function SectionHeader({ eyebrow, title, subtitle, center = false }) {
   return (
     <div className={`section-header ${center ? 'text-center' : ''}`}>
       {eyebrow && (
-        <motion.p variants={fadeInUp} className="section-eyebrow">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="section-eyebrow"
+        >
           {eyebrow}
         </motion.p>
       )}
-      <motion.h2 variants={fadeInUp} className="section-title">
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="section-title"
+      >
         {title}
       </motion.h2>
       {subtitle && (
-        <motion.p variants={fadeInUp} className="section-subtitle" style={center ? { margin: '0 auto' } : {}}>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="section-subtitle"
+          style={center ? { margin: '0 auto' } : {}}
+        >
           {subtitle}
         </motion.p>
       )}
@@ -270,7 +288,7 @@ function App() {
         <div className="hero-content">
           <motion.div
             className="hero-badge"
-            variants={scaleIn}
+            initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
           >
             <Sparkles size={16} />
             <span>The Future of Content Creation</span>
@@ -278,7 +296,7 @@ function App() {
 
           <motion.h1
             className="hero-title"
-            variants={fadeInUp}
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
           >
             <span className="text-gradient">The Algorithmic</span>
             <br />
@@ -287,7 +305,7 @@ function App() {
 
           <motion.p
             className="hero-subtitle"
-            variants={fadeInUp}
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
           >
             Why AI avatars are no longer optional for creators,
             <br />entrepreneurs, and businesses in the digital age.
@@ -295,7 +313,7 @@ function App() {
 
           <motion.div
             className="hero-cta"
-            variants={fadeInUp}
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
           >
             <button className="btn-glass btn-primary">
               <Play size={20} />
@@ -356,7 +374,7 @@ function App() {
               subtitle="Your audience is everywhere. But your presence can only be in so many places at once... or can it?"
             />
 
-            <motion.div className="stat-highlight" variants={fadeInUp}>
+            <motion.div className="stat-highlight" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
               <div className="stat-value text-gradient">
                 <AnimatedCounter value={6.84} suffix="" />
               </div>
@@ -364,7 +382,7 @@ function App() {
             </motion.div>
           </div>
 
-          <motion.div className="split-visual" variants={slideInRight}>
+          <motion.div className="split-visual" initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <div className="juggling-visual">
               {/* Central Figure */}
               <div className="juggler-figure">
@@ -428,7 +446,7 @@ function App() {
             center
           />
 
-          <motion.div className="market-visual" variants={scaleIn}>
+          <motion.div className="market-visual" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
             <div className="market-card glass-panel">
               <div className="market-crown">
                 <motion.div
@@ -477,7 +495,7 @@ function App() {
       {/* Slide 4: The Discovery Shift */}
       <Slide id="slide-4">
         <div className="split-layout reverse">
-          <motion.div className="split-visual" variants={slideInLeft}>
+          <motion.div className="split-visual" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <div className="shift-visual">
               <div className="shift-comparison">
                 <motion.div
@@ -537,13 +555,13 @@ function App() {
               subtitle="Social media has overtaken traditional search as the primary discovery engine for the next generation of consumers."
             />
 
-            <motion.div className="insight-cards" variants={staggerContainer}>
+            <motion.div className="insight-cards" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
               {[
                 { icon: Video, title: 'Video-First', desc: 'Short-form video is the new homepage' },
                 { icon: Users, title: 'Creator Trust', desc: 'People trust people, not brands' },
                 { icon: Zap, title: 'Algorithm-Driven', desc: 'Content finds the audience, not vice versa' },
               ].map((item, i) => (
-                <motion.div key={i} className="insight-card glass-card" variants={fadeInUp}>
+                <motion.div key={i} className="insight-card glass-card" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
                   <div className="insight-icon">
                     <item.icon size={24} />
                   </div>
@@ -570,7 +588,7 @@ function App() {
               subtitle="The algorithm rewards consistency, but humans aren't machines. The pressure to post daily creates an impossible standard."
             />
 
-            <motion.div className="paradox-quote" variants={fadeInUp}>
+            <motion.div className="paradox-quote" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
               <blockquote>
                 "The algorithm demands consistency. Your humanity demands rest.
                 <br />Something has to give."
@@ -578,7 +596,7 @@ function App() {
             </motion.div>
           </div>
 
-          <motion.div className="split-visual" variants={slideInRight}>
+          <motion.div className="split-visual" initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <div className="calendar-visual">
               <div className="calendar-header">
                 <span>Content Calendar</span>
@@ -629,7 +647,7 @@ function App() {
             center
           />
 
-          <motion.div className="burnout-visual" variants={scaleIn}>
+          <motion.div className="burnout-visual" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
             <div className="battery-container">
               <motion.div
                 className="battery-icon"
@@ -693,7 +711,7 @@ function App() {
             center
           />
 
-          <motion.div className="hats-visual" variants={scaleIn}>
+          <motion.div className="hats-visual" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
             <div className="person-center">
               <motion.div
                 className="person-figure"
@@ -745,7 +763,7 @@ function App() {
       {/* Slide 8: Ideation Fatigue */}
       <Slide id="slide-8">
         <div className="split-layout reverse">
-          <motion.div className="split-visual" variants={slideInLeft}>
+          <motion.div className="split-visual" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <div className="blank-page-visual">
               <motion.div
                 className="cursor-blink"
@@ -807,15 +825,15 @@ function App() {
               subtitle="The blank page becomes your enemy when you need to create content daily. Coming up with fresh, engaging ideas is exhausting."
             />
 
-            <motion.div className="fatigue-stats" variants={staggerContainer}>
-              <motion.div className="fatigue-stat glass-card" variants={fadeInUp}>
+            <motion.div className="fatigue-stats" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+              <motion.div className="fatigue-stat glass-card" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
                 <Brain size={32} className="fatigue-icon" />
                 <div className="fatigue-info">
                   <span className="fatigue-num">4-6 hours</span>
                   <span className="fatigue-desc">Average time spent on ideation per week</span>
                 </div>
               </motion.div>
-              <motion.div className="fatigue-stat glass-card" variants={fadeInUp}>
+              <motion.div className="fatigue-stat glass-card" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
                 <RefreshCw size={32} className="fatigue-icon" />
                 <div className="fatigue-info">
                   <span className="fatigue-num">60%</span>
@@ -834,7 +852,7 @@ function App() {
         <div className="centered-layout">
           <motion.div
             className="solution-badge"
-            variants={scaleIn}
+            initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
           >
             <Sparkles size={20} />
             <span>The Game Changer</span>
@@ -846,7 +864,7 @@ function App() {
             center
           />
 
-          <motion.div className="avatar-comparison" variants={fadeInUp}>
+          <motion.div className="avatar-comparison" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
             <div className="comparison-container glass-panel">
               <div className="comparison-side realistic">
                 <div className="avatar-preview">
@@ -930,7 +948,7 @@ function App() {
             center
           />
 
-          <motion.div className="cost-visual" variants={scaleIn}>
+          <motion.div className="cost-visual" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
             <div className="cost-comparison">
               <motion.div
                 className="cost-side traditional"
@@ -1002,14 +1020,14 @@ function App() {
               subtitle="Your AI avatar never sleeps, never gets sick, never has a bad hair day. It's ready to create content any time, any day."
             />
 
-            <motion.div className="reliability-features" variants={staggerContainer}>
+            <motion.div className="reliability-features" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
               {[
                 { icon: Clock, title: 'Round the Clock', desc: 'Create content at 3 AM or 3 PM' },
                 { icon: Globe, title: 'Any Timezone', desc: 'Serve global audiences instantly' },
                 { icon: Zap, title: 'Zero Downtime', desc: 'No sick days, no vacations' },
                 { icon: Star, title: 'Consistent Quality', desc: 'Same professional output every time' },
               ].map((feature, i) => (
-                <motion.div key={i} className="reliability-feature glass-card" variants={fadeInUp}>
+                <motion.div key={i} className="reliability-feature glass-card" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
                   <div className="feature-icon">
                     <feature.icon size={24} />
                   </div>
@@ -1022,7 +1040,7 @@ function App() {
             </motion.div>
           </div>
 
-          <motion.div className="split-visual" variants={slideInRight}>
+          <motion.div className="split-visual" initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <div className="city-visual">
               <div className="city-skyline">
                 {Array.from({ length: 12 }, (_, i) => (
@@ -1119,7 +1137,7 @@ function App() {
             center
           />
 
-          <motion.div className="workflow-visual" variants={fadeInUp}>
+          <motion.div className="workflow-visual" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
             <div className="workflow-steps">
               {[
                 { icon: Brain, title: 'Ideate', desc: 'AI generates topic ideas', color: '#667eea' },
@@ -1201,7 +1219,7 @@ function App() {
             center
           />
 
-          <motion.div className="comparison-table-container" variants={fadeInUp}>
+          <motion.div className="comparison-table-container" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
             <div className="comparison-table glass-panel">
               <div className="table-header">
                 <div className="header-cell feature">Feature</div>
@@ -1267,7 +1285,7 @@ function App() {
             center
           />
 
-          <motion.div className="globe-visual" variants={scaleIn}>
+          <motion.div className="globe-visual" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
             <div className="globe-container">
               <motion.div
                 className="globe"
@@ -1336,28 +1354,28 @@ function App() {
               subtitle="How Virgin Voyages created a hyper-personalized experience by using an AI avatar of Jennifer Lopez to greet each passenger by name."
             />
 
-            <motion.div className="case-study-stats" variants={staggerContainer}>
-              <motion.div className="case-stat glass-card" variants={fadeInUp}>
+            <motion.div className="case-study-stats" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+              <motion.div className="case-stat glass-card" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
                 <span className="case-stat-value">300K+</span>
                 <span className="case-stat-label">Personalized Videos</span>
               </motion.div>
-              <motion.div className="case-stat glass-card" variants={fadeInUp}>
+              <motion.div className="case-stat glass-card" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
                 <span className="case-stat-value">1:1</span>
                 <span className="case-stat-label">Personal Greeting</span>
               </motion.div>
-              <motion.div className="case-stat glass-card" variants={fadeInUp}>
+              <motion.div className="case-stat glass-card" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
                 <span className="case-stat-value">∞</span>
                 <span className="case-stat-label">Scale Potential</span>
               </motion.div>
             </motion.div>
 
-            <motion.blockquote className="case-quote" variants={fadeInUp}>
+            <motion.blockquote className="case-quote" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
               "Each passenger received a personalized video of JLo welcoming them by name.
               Impossible at scale with traditional video."
             </motion.blockquote>
           </div>
 
-          <motion.div className="split-visual" variants={slideInRight}>
+          <motion.div className="split-visual" initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <div className="jlo-visual glass-panel">
               <div className="video-frame">
                 <div className="frame-header">
@@ -1399,7 +1417,7 @@ function App() {
       {/* Slide 16: Small Business Case Study */}
       <Slide id="slide-16">
         <div className="split-layout reverse">
-          <motion.div className="split-visual" variants={slideInLeft}>
+          <motion.div className="split-visual" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <div className="growth-chart glass-panel">
               <div className="chart-header">
                 <h4>Revenue Growth</h4>
@@ -1458,14 +1476,14 @@ function App() {
               subtitle="How a local fitness coach 10x'd their reach using AI avatars to create consistent, personalized content at scale."
             />
 
-            <motion.div className="success-metrics" variants={staggerContainer}>
+            <motion.div className="success-metrics" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
               {[
                 { metric: '10x', label: 'Content Output', icon: Video },
                 { metric: '340%', label: 'Sales Increase', icon: TrendingUp },
                 { metric: '85%', label: 'Time Saved', icon: Clock },
                 { metric: '$0', label: 'Production Cost', icon: DollarSign },
               ].map((item, i) => (
-                <motion.div key={item.label} className="success-metric glass-card" variants={fadeInUp}>
+                <motion.div key={item.label} className="success-metric glass-card" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
                   <item.icon size={24} className="metric-icon" />
                   <span className="metric-value text-gradient">{item.metric}</span>
                   <span className="metric-label">{item.label}</span>
@@ -1488,7 +1506,7 @@ function App() {
             center
           />
 
-          <motion.div className="hybrid-visual" variants={fadeInUp}>
+          <motion.div className="hybrid-visual" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
             <div className="hybrid-container glass-panel">
               <div className="hybrid-side human">
                 <motion.div
@@ -1559,7 +1577,7 @@ function App() {
             center
           />
 
-          <motion.div className="future-grid" variants={staggerContainer}>
+          <motion.div className="future-grid" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
             {[
               {
                 icon: Target,
@@ -1589,7 +1607,7 @@ function App() {
               <motion.div
                 key={item.title}
                 className="future-card glass-card"
-                variants={fadeInUp}
+                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
                 whileHover={{ y: -10, scale: 1.02 }}
               >
                 <div
@@ -1617,7 +1635,7 @@ function App() {
         <div className="cta-content">
           <motion.div
             className="cta-badge"
-            variants={scaleIn}
+            initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
           >
             <Rocket size={20} />
             <span>Your Turn</span>
@@ -1625,7 +1643,7 @@ function App() {
 
           <motion.h2
             className="cta-title"
-            variants={fadeInUp}
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
           >
             <span className="cta-line">Start Your</span>
             <span className="cta-line text-gradient">Digital Twin</span>
@@ -1634,7 +1652,7 @@ function App() {
 
           <motion.p
             className="cta-subtitle"
-            variants={fadeInUp}
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
           >
             Join thousands of creators and businesses who have already
             <br />transformed their content strategy with AI avatars.
@@ -1642,7 +1660,7 @@ function App() {
 
           <motion.div
             className="cta-buttons"
-            variants={fadeInUp}
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
           >
             <button className="btn-glass btn-primary btn-large">
               <Sparkles size={24} />
@@ -1657,10 +1675,10 @@ function App() {
 
           <motion.div
             className="cta-features"
-            variants={staggerContainer}
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
           >
             {['No credit card required', '5-minute setup', 'Free trial available'].map((feature, i) => (
-              <motion.span key={feature} className="cta-feature" variants={fadeInUp}>
+              <motion.span key={feature} className="cta-feature" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
                 <CheckCircle size={16} />
                 {feature}
               </motion.span>
@@ -1696,7 +1714,7 @@ function App() {
         <div className="qa-content">
           <motion.div
             className="qa-icon"
-            variants={scaleIn}
+            initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
             animate={{ rotate: [0, 5, -5, 0] }}
             transition={{ duration: 4, repeat: Infinity }}
           >
@@ -1705,21 +1723,21 @@ function App() {
 
           <motion.h2
             className="qa-title"
-            variants={fadeInUp}
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
           >
             Questions<span className="text-gradient">?</span>
           </motion.h2>
 
           <motion.p
             className="qa-subtitle"
-            variants={fadeInUp}
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
           >
             Let's discuss how AI avatars can transform your content strategy
           </motion.p>
 
           <motion.div
             className="qa-contact"
-            variants={fadeInUp}
+            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
           >
             <div className="contact-card glass-card">
               <div className="contact-info">
@@ -1732,13 +1750,13 @@ function App() {
 
           <motion.div
             className="qa-decoration"
-            variants={staggerContainer}
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
           >
             {[...Array(5)].map((_, i) => (
               <motion.div
                 key={i}
                 className="decoration-dot"
-                variants={fadeIn}
+                initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
                 animate={{
                   y: [-10, 10, -10],
                   opacity: [0.3, 0.7, 0.3]
