@@ -938,71 +938,85 @@ function App() {
         </div>
       </Slide>
 
-      {/* Slide 10: 99% Cost Reduction */}
+      {/* Slide 10: The Production Barrier */}
       <Slide id="slide-10">
         <div className="centered-layout">
           <SectionHeader
-            eyebrow="The Economics"
-            title={<>The <span className="text-gradient">99%</span> Cost Revolution</>}
-            subtitle="What once required a full production crew, studio, and thousands of dollars can now be done for the price of a coffee."
+            eyebrow="Efficiency Unlocked"
+            title={<>The Production Barrier: <span className="text-gradient">Shattered</span></>}
+            subtitle="What once required weeks of planning, scheduling, and coordination now happens in minutes."
             center
           />
 
-          <motion.div className="cost-visual" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-            <div className="cost-comparison">
+          <motion.div className="barrier-visual" initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+            <div className="friction-comparison">
               <motion.div
-                className="cost-side traditional"
+                className="friction-side traditional"
                 initial={{ x: -50, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <div className="cost-label">Traditional Production</div>
-                <div className="cost-amount crossed">
-                  <span className="currency">$</span>
-                  <span className="value">10,000</span>
+                <div className="friction-icon heavy">
+                  <Video size={64} />
+                  <motion.div
+                    className="weight-indicator"
+                    animate={{ y: [0, 5, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <Layers size={24} />
+                  </motion.div>
                 </div>
-                <div className="cost-line" />
-                <ul className="cost-includes">
-                  <li>Studio rental</li>
-                  <li>Camera crew</li>
-                  <li>Lighting setup</li>
-                  <li>Professional editing</li>
-                  <li>Hair & makeup</li>
+                <div className="friction-label">Traditional Production</div>
+                <div className="friction-time">
+                  <Clock size={20} />
+                  <span>Weeks of Lead Time</span>
+                </div>
+                <ul className="friction-list">
+                  <li><XCircle size={14} /> Schedule coordination</li>
+                  <li><XCircle size={14} /> Equipment booking</li>
+                  <li><XCircle size={14} /> Location scouting</li>
+                  <li><XCircle size={14} /> Post-production queue</li>
                 </ul>
               </motion.div>
 
-              <div className="cost-arrow">
+              <div className="friction-arrow">
                 <motion.div
-                  animate={{ x: [0, 10, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
+                  className="shatter-effect"
+                  animate={{ scale: [1, 1.2, 1], rotate: [0, 5, -5, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
                 >
-                  <ArrowRight size={48} />
+                  <Zap size={48} />
                 </motion.div>
               </div>
 
               <motion.div
-                className="cost-side ai-avatar"
+                className="friction-side ai-powered"
                 initial={{ x: 50, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                <div className="cost-label">AI Avatar</div>
-                <div className="cost-amount highlighted">
-                  <span className="currency">$</span>
-                  <span className="value text-gradient">89</span>
+                <div className="friction-icon light">
+                  <Monitor size={64} />
+                  <motion.div
+                    className="speed-indicator"
+                    animate={{ opacity: [0.5, 1, 0.5] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    <Sparkles size={24} />
+                  </motion.div>
                 </div>
-                <div className="cost-badge">
-                  <Zap size={16} />
-                  <span>99% Savings</span>
+                <div className="friction-label">AI Avatar</div>
+                <div className="friction-time fast">
+                  <Zap size={20} />
+                  <span>Minutes to Publish</span>
                 </div>
-                <ul className="cost-includes success">
-                  <li><CheckCircle size={14} /> Unlimited videos</li>
-                  <li><CheckCircle size={14} /> Instant generation</li>
-                  <li><CheckCircle size={14} /> No scheduling hassle</li>
-                  <li><CheckCircle size={14} /> Always camera-ready</li>
-                  <li><CheckCircle size={14} /> Professional quality</li>
+                <ul className="friction-list success">
+                  <li><CheckCircle size={14} /> Instant availability</li>
+                  <li><CheckCircle size={14} /> No equipment needed</li>
+                  <li><CheckCircle size={14} /> Work from anywhere</li>
+                  <li><CheckCircle size={14} /> Immediate output</li>
                 </ul>
               </motion.div>
             </div>
@@ -1209,67 +1223,96 @@ function App() {
 
       {/* ==================== SECTION 4: THE SHOWCASE ==================== */}
 
-      {/* Slide 13: Platform Face-off */}
+      {/* Slide 13: The 3-Step Content Engine */}
       <Slide id="slide-13">
         <div className="centered-layout">
           <SectionHeader
-            eyebrow="Market Leaders"
-            title={<>Platform <span className="text-gradient">Face-Off</span></>}
-            subtitle="Comparing the top AI avatar platforms to help you make the right choice for your needs."
+            eyebrow="Your New Workflow"
+            title={<>The 3-Step <span className="text-gradient">Content Engine</span></>}
+            subtitle="A streamlined process that turns ideas into published content faster than ever before."
             center
           />
 
-          <motion.div className="comparison-table-container" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-            <div className="comparison-table glass-panel">
-              <div className="table-header">
-                <div className="header-cell feature">Feature</div>
-                <div className="header-cell platform heygen">
-                  <span className="platform-name">HeyGen</span>
-                  <span className="platform-badge">Popular</span>
-                </div>
-                <div className="header-cell platform synthesia">
-                  <span className="platform-name">Synthesia</span>
-                  <span className="platform-badge">Enterprise</span>
-                </div>
-              </div>
-
-              <div className="table-body">
+          <motion.div className="engine-visual" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+            <div className="engine-flow glass-panel">
+              <div className="engine-steps">
                 {[
-                  { feature: 'Realistic Avatars', heygen: true, synthesia: true },
-                  { feature: 'Custom Avatar Training', heygen: true, synthesia: true },
-                  { feature: 'Instant Avatar', heygen: true, synthesia: false },
-                  { feature: 'Voice Cloning', heygen: true, synthesia: true },
-                  { feature: 'Multi-language Support', heygen: '40+', synthesia: '120+' },
-                  { feature: 'API Access', heygen: true, synthesia: true },
-                  { feature: 'Starting Price', heygen: '$29/mo', synthesia: '$89/mo' },
-                  { feature: 'Free Trial', heygen: true, synthesia: true },
-                ].map((row, i) => (
+                  {
+                    step: 1,
+                    icon: FileText,
+                    title: 'AI Writer',
+                    subtitle: 'Script',
+                    desc: 'Generate compelling scripts from simple prompts',
+                    color: '#667eea'
+                  },
+                  {
+                    step: 2,
+                    icon: Sparkles,
+                    title: 'AI Avatar',
+                    subtitle: 'Video',
+                    desc: 'Transform scripts into professional videos instantly',
+                    color: '#764ba2'
+                  },
+                  {
+                    step: 3,
+                    icon: Share2,
+                    title: 'Social Platforms',
+                    subtitle: 'Distribution',
+                    desc: 'Publish across all channels simultaneously',
+                    color: '#4facfe'
+                  }
+                ].map((item, i) => (
                   <motion.div
-                    key={row.feature}
-                    className="table-row"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
+                    key={item.step}
+                    className="engine-step"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.2 }}
                     viewport={{ once: true }}
                   >
-                    <div className="row-cell feature">{row.feature}</div>
-                    <div className="row-cell value">
-                      {typeof row.heygen === 'boolean' ? (
-                        row.heygen ? <CheckCircle size={20} className="check" /> : <XCircle size={20} className="cross" />
-                      ) : (
-                        <span className="text-value">{row.heygen}</span>
-                      )}
+                    {i < 2 && (
+                      <motion.div
+                        className="step-arrow"
+                        initial={{ scaleX: 0 }}
+                        whileInView={{ scaleX: 1 }}
+                        transition={{ delay: 0.5 + i * 0.2, duration: 0.4 }}
+                        viewport={{ once: true }}
+                      >
+                        <ArrowRight size={32} />
+                      </motion.div>
+                    )}
+                    <div className="step-number-badge" style={{ background: item.color }}>
+                      {item.step}
                     </div>
-                    <div className="row-cell value">
-                      {typeof row.synthesia === 'boolean' ? (
-                        row.synthesia ? <CheckCircle size={20} className="check" /> : <XCircle size={20} className="cross" />
-                      ) : (
-                        <span className="text-value">{row.synthesia}</span>
-                      )}
-                    </div>
+                    <motion.div
+                      className="step-icon-large"
+                      style={{
+                        background: `linear-gradient(135deg, ${item.color}30, ${item.color}10)`,
+                        borderColor: `${item.color}40`
+                      }}
+                      whileHover={{ scale: 1.1, y: -5 }}
+                    >
+                      <item.icon size={40} color={item.color} />
+                    </motion.div>
+                    <h3 className="step-title-main">{item.title}</h3>
+                    <span className="step-subtitle" style={{ color: item.color }}>{item.subtitle}</span>
+                    <p className="step-description">{item.desc}</p>
                   </motion.div>
                 ))}
               </div>
+
+              <motion.div
+                className="engine-output"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <div className="output-badge">
+                  <Zap size={18} />
+                  <span>Result: Content at Scale</span>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
@@ -1567,65 +1610,89 @@ function App() {
         </div>
       </Slide>
 
-      {/* Slide 18: Future Outlook 2026 */}
+      {/* Slide 18: The Speed of Culture */}
       <Slide id="slide-18">
         <div className="centered-layout">
           <SectionHeader
-            eyebrow="What's Coming"
-            title={<>Future Outlook <span className="text-gradient">2026</span></>}
-            subtitle="The AI avatar revolution is just beginning. Here's what the near future holds."
+            eyebrow="Stay Relevant"
+            title={<>The Speed of <span className="text-gradient">Culture</span></>}
+            subtitle="In a world where trends move at lightning speed, your ability to respond defines your relevance."
             center
           />
 
-          <motion.div className="future-grid" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-            {[
-              {
-                icon: Target,
-                title: 'Hyper-Personalization',
-                desc: 'Every viewer gets a unique, personalized version of your content tailored to their preferences.',
-                color: '#667eea'
-              },
-              {
-                icon: MessageCircle,
-                title: 'Real-time Interaction',
-                desc: 'AI avatars that can have live conversations, answer questions, and engage in real-time.',
-                color: '#764ba2'
-              },
-              {
-                icon: Brain,
-                title: 'Emotional Intelligence',
-                desc: 'Avatars that can read and respond to viewer emotions for deeper engagement.',
-                color: '#f093fb'
-              },
-              {
-                icon: Globe,
-                title: 'Seamless Translation',
-                desc: 'Content automatically adapted for cultural nuances, not just language translation.',
-                color: '#4facfe'
-              },
-            ].map((item, i) => (
-              <motion.div
-                key={item.title}
-                className="future-card glass-card"
-                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
-                whileHover={{ y: -10, scale: 1.02 }}
-              >
-                <div
-                  className="future-icon"
-                  style={{ background: `linear-gradient(135deg, ${item.color}40, ${item.color}20)` }}
-                >
-                  <item.icon size={32} color={item.color} />
-                </div>
-                <h3 className="future-title">{item.title}</h3>
-                <p className="future-desc">{item.desc}</p>
+          <motion.div className="speed-visual" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+            <div className="timeline-container glass-panel">
+              <div className="timeline-track">
                 <motion.div
-                  className="future-glow"
-                  style={{ background: item.color }}
-                  animate={{ opacity: [0.1, 0.3, 0.1] }}
-                  transition={{ duration: 3, repeat: Infinity }}
+                  className="timeline-progress"
+                  initial={{ width: '0%' }}
+                  whileInView={{ width: '100%' }}
+                  transition={{ duration: 2, delay: 0.5 }}
+                  viewport={{ once: true }}
                 />
+              </div>
+
+              <div className="timeline-points">
+                <motion.div
+                  className="timeline-point start"
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.3 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="point-marker">
+                    <TrendingUp size={24} />
+                  </div>
+                  <div className="point-content">
+                    <span className="point-label">Point A</span>
+                    <h4 className="point-title">Viral Trend Starts</h4>
+                    <p className="point-desc">A new trend emerges on social media</p>
+                  </div>
+                  <div className="point-time">T = 0</div>
+                </motion.div>
+
+                <motion.div
+                  className="timeline-duration"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 1.5 }}
+                  viewport={{ once: true }}
+                >
+                  <Zap size={32} className="duration-icon" />
+                  <span className="duration-text">1 Hour</span>
+                  <span className="duration-subtext">Not days. Not weeks.</span>
+                </motion.div>
+
+                <motion.div
+                  className="timeline-point end"
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 2.2 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="point-marker success">
+                    <Video size={24} />
+                  </div>
+                  <div className="point-content">
+                    <span className="point-label">Point B</span>
+                    <h4 className="point-title">Your Video is Live</h4>
+                    <p className="point-desc">Relevant content, perfectly timed</p>
+                  </div>
+                  <div className="point-time highlight">T + 1hr</div>
+                </motion.div>
+              </div>
+
+              <motion.div
+                className="speed-tagline"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2.5 }}
+                viewport={{ once: true }}
+              >
+                <Clock size={20} />
+                <span>Speed is the new competitive advantage</span>
               </motion.div>
-            ))}
+            </div>
           </motion.div>
         </div>
       </Slide>
