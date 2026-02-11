@@ -2552,4 +2552,435 @@
     flex-direction: column;
     gap: 1rem;
   }
+
+  .friction-comparison {
+    flex-direction: column;
+  }
+
+  .friction-arrow {
+    transform: rotate(90deg);
+  }
+
+  .engine-steps {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .step-arrow {
+    display: none;
+  }
+
+  .timeline-points {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .timeline-track {
+    display: none;
+  }
+}
+
+/* ==================== SLIDE 10: PRODUCTION BARRIER ==================== */
+
+.barrier-visual {
+  width: 100%;
+  max-width: 900px;
+}
+
+.friction-comparison {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.friction-side {
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2.5rem 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  text-align: center;
+}
+
+.friction-side.ai-powered {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+.friction-icon {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+}
+
+.friction-icon.heavy {
+  background: rgba(245, 87, 108, 0.1);
+  border: 2px solid rgba(245, 87, 108, 0.3);
+  color: #f5576c;
+}
+
+.friction-icon.light {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+  border: 2px solid rgba(102, 126, 234, 0.4);
+  color: var(--accent-primary);
+}
+
+.weight-indicator,
+.speed-indicator {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.weight-indicator {
+  background: rgba(245, 87, 108, 0.2);
+  color: #f5576c;
+}
+
+.speed-indicator {
+  background: rgba(102, 126, 234, 0.3);
+  color: var(--accent-primary);
+}
+
+.friction-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.friction-time {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(245, 87, 108, 0.1);
+  border-radius: 100px;
+  color: #f5576c;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+}
+
+.friction-time.fast {
+  background: rgba(56, 239, 125, 0.1);
+  color: #38ef7d;
+}
+
+.friction-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.friction-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.friction-list li svg {
+  color: #f5576c;
+  flex-shrink: 0;
+}
+
+.friction-list.success li svg {
+  color: #38ef7d;
+}
+
+.friction-list.success li {
+  color: var(--text-secondary);
+}
+
+.friction-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shatter-effect {
+  color: var(--accent-primary);
+  filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.5));
+}
+
+/* ==================== SLIDE 13: 3-STEP ENGINE ==================== */
+
+.engine-visual {
+  width: 100%;
+  max-width: 1000px;
+}
+
+.engine-flow {
+  padding: 3rem;
+}
+
+.engine-steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.engine-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.step-arrow {
+  position: absolute;
+  top: 60px;
+  right: -30px;
+  color: var(--accent-primary);
+  z-index: 5;
+}
+
+.step-number-badge {
+  position: absolute;
+  top: -10px;
+  right: calc(50% - 60px);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: white;
+  z-index: 2;
+}
+
+.step-icon-large {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  border: 2px solid;
+  transition: all 0.3s ease;
+}
+
+.step-title-main {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.step-subtitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.step-description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  max-width: 200px;
+}
+
+.engine-output {
+  display: flex;
+  justify-content: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.output-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, rgba(56, 239, 125, 0.1), rgba(56, 239, 125, 0.05));
+  border: 1px solid rgba(56, 239, 125, 0.3);
+  border-radius: 100px;
+  color: #38ef7d;
+}
+
+.output-badge span {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+}
+
+/* ==================== SLIDE 18: SPEED OF CULTURE ==================== */
+
+.speed-visual {
+  width: 100%;
+  max-width: 900px;
+}
+
+.timeline-container {
+  padding: 3rem;
+  position: relative;
+}
+
+.timeline-track {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  width: 80%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.timeline-progress {
+  height: 100%;
+  background: var(--gradient-premium);
+  border-radius: 2px;
+}
+
+.timeline-points {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.timeline-point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.point-marker {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: var(--text-secondary);
+}
+
+.point-marker.success {
+  background: linear-gradient(135deg, rgba(56, 239, 125, 0.2), rgba(56, 239, 125, 0.1));
+  border-color: rgba(56, 239, 125, 0.4);
+  color: #38ef7d;
+}
+
+.point-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.point-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.point-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.point-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  max-width: 180px;
+}
+
+.point-time {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.point-time.highlight {
+  background: linear-gradient(135deg, rgba(56, 239, 125, 0.2), rgba(56, 239, 125, 0.1));
+  color: #38ef7d;
+}
+
+.timeline-duration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.duration-icon {
+  color: var(--accent-primary);
+  filter: drop-shadow(0 0 15px rgba(102, 126, 234, 0.5));
+}
+
+.duration-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: var(--gradient-premium);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.duration-subtext {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.speed-tagline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+}
+
+.speed-tagline svg {
+  color: var(--accent-primary);
+}
+
+.speed-tagline span {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
 }
