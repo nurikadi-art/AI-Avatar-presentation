@@ -5,7 +5,7 @@ import {
   Sparkles, DollarSign, Clock, Wand2, Globe, Award, BarChart3,
   Workflow, Rocket, ArrowRight, ChevronDown, Monitor, Smartphone,
   MessageCircle, Video, Search, Share2, Brain, Target, Star,
-  CheckCircle, XCircle, Layers, RefreshCw
+  CheckCircle, XCircle, Layers, RefreshCw, Gift
 } from 'lucide-react'
 import './App.css'
 
@@ -194,15 +194,16 @@ function App() {
     'slide-1', 'slide-2', 'slide-3', 'slide-4', 'slide-5',
     'slide-6', 'slide-7', 'slide-8', 'slide-9', 'slide-10',
     'slide-11', 'slide-12', 'slide-13', 'slide-14', 'slide-15',
-    'slide-16', 'slide-17', 'slide-18', 'slide-19', 'slide-20'
+    'slide-16', 'slide-17', 'slide-18', 'slide-19', 'slide-20',
+    'slide-21'
   ]
 
   const sections = [
-    { name: 'The Why', slides: [0, 1, 2, 3] },
-    { name: 'The Pain', slides: [4, 5, 6, 7] },
-    { name: 'The Solution', slides: [8, 9, 10, 11] },
-    { name: 'The Showcase', slides: [12, 13, 14, 15] },
-    { name: 'Conclusion', slides: [16, 17, 18, 19] }
+    { name: 'The Why', slides: [0, 1, 2, 3, 4] },
+    { name: 'The Pain', slides: [5, 6, 7, 8] },
+    { name: 'The Solution', slides: [9, 10, 11, 12] },
+    { name: 'The Showcase', slides: [13, 14, 15, 16] },
+    { name: 'Conclusion', slides: [17, 18, 19, 20] }
   ]
 
   useEffect(() => {
@@ -364,8 +365,104 @@ function App() {
         </div>
       </Slide>
 
-      {/* Slide 2: 6.84 Platforms */}
-      <Slide id="slide-2">
+      {/* Slide 2: Free Gift */}
+      <Slide id="slide-2" className="gift-slide">
+        <div className="centered-layout">
+          <motion.div
+            className="gift-visual"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, type: "spring" }}
+          >
+            <motion.div
+              className="gift-box"
+              animate={{
+                y: [-10, 10, -10],
+                rotate: [-2, 2, -2]
+              }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <div className="gift-ribbon" />
+              <div className="gift-bow">
+                <div className="bow-loop left" />
+                <div className="bow-loop right" />
+                <div className="bow-center" />
+              </div>
+              <motion.div
+                className="gift-icon-container"
+                animate={{
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <Gift size={80} className="gift-icon" />
+              </motion.div>
+              <div className="gift-sparkles">
+                {[...Array(6)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="sparkle"
+                    style={{
+                      '--sparkle-index': i,
+                    }}
+                    animate={{
+                      scale: [0, 1, 0],
+                      opacity: [0, 1, 0],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      delay: i * 0.25,
+                    }}
+                  >
+                    <Sparkles size={16} />
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+
+          <motion.h2
+            className="gift-title"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Free Gift if You Stay <span className="text-gradient">'Til Q&A</span>
+          </motion.h2>
+
+          <motion.div
+            className="gift-offer glass-panel"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <div className="offer-content">
+              <span className="offer-condition">Stay until Q&A</span>
+              <ArrowRight size={32} className="offer-arrow" />
+              <span className="offer-reward">
+                Get <span className="highlight">5,000</span> AI Business Prompts
+              </span>
+            </div>
+          </motion.div>
+
+          <motion.p
+            className="gift-subtitle"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
+            Exclusive resource to supercharge your AI content creation
+          </motion.p>
+        </div>
+      </Slide>
+
+      {/* Slide 3: 6.84 Platforms */}
+      <Slide id="slide-3">
         <div className="split-layout">
           <div className="split-content">
             <SectionHeader
@@ -436,8 +533,8 @@ function App() {
         </div>
       </Slide>
 
-      {/* Slide 3: Video is King */}
-      <Slide id="slide-3">
+      {/* Slide 4: Video is King */}
+      <Slide id="slide-4">
         <div className="centered-layout">
           <SectionHeader
             eyebrow="Market Reality"
@@ -492,8 +589,8 @@ function App() {
         </div>
       </Slide>
 
-      {/* Slide 4: The Discovery Shift */}
-      <Slide id="slide-4">
+      {/* Slide 5: The Discovery Shift */}
+      <Slide id="slide-5">
         <div className="split-layout reverse">
           <motion.div className="split-visual" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <div className="shift-visual">
@@ -578,8 +675,8 @@ function App() {
 
       {/* ==================== SECTION 2: THE PAIN ==================== */}
 
-      {/* Slide 5: The Consistency Paradox */}
-      <Slide id="slide-5">
+      {/* Slide 6: The Consistency Paradox */}
+      <Slide id="slide-6">
         <div className="split-layout">
           <div className="split-content">
             <SectionHeader
@@ -638,8 +735,8 @@ function App() {
         </div>
       </Slide>
 
-      {/* Slide 6: 70% Burnout */}
-      <Slide id="slide-6">
+      {/* Slide 7: 70% Burnout */}
+      <Slide id="slide-7">
         <div className="centered-layout">
           <SectionHeader
             eyebrow="The Human Cost"
@@ -701,8 +798,8 @@ function App() {
         </div>
       </Slide>
 
-      {/* Slide 7: One-Person Army */}
-      <Slide id="slide-7">
+      {/* Slide 8: One-Person Army */}
+      <Slide id="slide-8">
         <div className="centered-layout">
           <SectionHeader
             eyebrow="The Reality Check"
@@ -760,8 +857,8 @@ function App() {
         </div>
       </Slide>
 
-      {/* Slide 8: Ideation Fatigue */}
-      <Slide id="slide-8">
+      {/* Slide 9: Ideation Fatigue */}
+      <Slide id="slide-9">
         <div className="split-layout reverse">
           <motion.div className="split-visual" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <div className="blank-page-visual">
@@ -847,8 +944,8 @@ function App() {
 
       {/* ==================== SECTION 3: THE SOLUTION ==================== */}
 
-      {/* Slide 9: Enter the Avatar */}
-      <Slide id="slide-9" className="solution-intro">
+      {/* Slide 10: Enter the Avatar */}
+      <Slide id="slide-10" className="solution-intro">
         <div className="centered-layout">
           <motion.div
             className="solution-badge"
@@ -938,8 +1035,8 @@ function App() {
         </div>
       </Slide>
 
-      {/* Slide 10: The Production Barrier */}
-      <Slide id="slide-10">
+      {/* Slide 11: The Production Barrier */}
+      <Slide id="slide-11">
         <div className="centered-layout">
           <SectionHeader
             eyebrow="Efficiency Unlocked"
@@ -1024,8 +1121,8 @@ function App() {
         </div>
       </Slide>
 
-      {/* Slide 11: 24/7 Reliability */}
-      <Slide id="slide-11">
+      {/* Slide 12: 24/7 Reliability */}
+      <Slide id="slide-12">
         <div className="split-layout">
           <div className="split-content">
             <SectionHeader
@@ -1141,8 +1238,8 @@ function App() {
         </div>
       </Slide>
 
-      {/* Slide 12: Solving Ideation */}
-      <Slide id="slide-12">
+      {/* Slide 13: Solving Ideation */}
+      <Slide id="slide-13">
         <div className="centered-layout">
           <SectionHeader
             eyebrow="Workflow Revolution"
@@ -1223,8 +1320,8 @@ function App() {
 
       {/* ==================== SECTION 4: THE SHOWCASE ==================== */}
 
-      {/* Slide 13: The 3-Step Content Engine */}
-      <Slide id="slide-13">
+      {/* Slide 14: The 3-Step Content Engine */}
+      <Slide id="slide-14">
         <div className="centered-layout">
           <SectionHeader
             eyebrow="Your New Workflow"
@@ -1318,8 +1415,8 @@ function App() {
         </div>
       </Slide>
 
-      {/* Slide 14: Multilingual Magic */}
-      <Slide id="slide-14">
+      {/* Slide 15: Multilingual Magic */}
+      <Slide id="slide-15">
         <div className="centered-layout">
           <SectionHeader
             eyebrow="Global Reach"
@@ -1387,8 +1484,8 @@ function App() {
         </div>
       </Slide>
 
-      {/* Slide 15: Case Study Virgin Voyages */}
-      <Slide id="slide-15">
+      {/* Slide 16: Case Study Virgin Voyages */}
+      <Slide id="slide-16">
         <div className="split-layout">
           <div className="split-content">
             <SectionHeader
@@ -1457,8 +1554,8 @@ function App() {
         </div>
       </Slide>
 
-      {/* Slide 16: Small Business Case Study */}
-      <Slide id="slide-16">
+      {/* Slide 17: Small Business Case Study */}
+      <Slide id="slide-17">
         <div className="split-layout reverse">
           <motion.div className="split-visual" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <div className="growth-chart glass-panel">
@@ -1539,8 +1636,8 @@ function App() {
 
       {/* ==================== SECTION 5: CONCLUSION ==================== */}
 
-      {/* Slide 17: Hybrid Workflow */}
-      <Slide id="slide-17">
+      {/* Slide 18: Hybrid Workflow */}
+      <Slide id="slide-18">
         <div className="centered-layout">
           <SectionHeader
             eyebrow="Best of Both Worlds"
@@ -1610,8 +1707,8 @@ function App() {
         </div>
       </Slide>
 
-      {/* Slide 18: The Speed of Culture */}
-      <Slide id="slide-18">
+      {/* Slide 19: The Speed of Culture */}
+      <Slide id="slide-19">
         <div className="centered-layout">
           <SectionHeader
             eyebrow="Stay Relevant"
@@ -1697,8 +1794,8 @@ function App() {
         </div>
       </Slide>
 
-      {/* Slide 19: Start Your Twin */}
-      <Slide id="slide-19" className="cta-slide">
+      {/* Slide 20: Start Your Twin */}
+      <Slide id="slide-20" className="cta-slide">
         <div className="cta-content">
           <motion.div
             className="cta-badge"
@@ -1776,8 +1873,8 @@ function App() {
         </div>
       </Slide>
 
-      {/* Slide 20: Q&A */}
-      <Slide id="slide-20" className="qa-slide">
+      {/* Slide 21: Q&A */}
+      <Slide id="slide-21" className="qa-slide">
         <div className="qa-content">
           <motion.div
             className="qa-icon"
