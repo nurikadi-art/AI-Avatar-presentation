@@ -1243,6 +1243,239 @@ img,video{content-visibility:auto}
 .vf-impulse-right .price-anchor{display:flex;align-items:baseline;gap:10px}
 .vf-impulse-right .was{color:var(--dim);text-decoration:line-through;font-weight:700}
 .vf-impulse-right .now{font-family:var(--tight);font-weight:900;color:var(--gold);line-height:1}
+
+/* === FUNNEL VISION — show them the finished page === */
+.vf-vision{padding:10px 0 36px;content-visibility:auto;contain-intrinsic-size:1px 700px}
+.vf-vision .wrap{width:min(100% - 2rem,1100px);margin-inline:auto}
+.vf-vision-head{text-align:center;max-width:640px;margin:0 auto 22px}
+.vf-vision-head .eyebrow{justify-content:center}
+.vf-vision-head h2{font-size:clamp(22px,3.4vw,32px);margin:10px 0 8px;line-height:1.15}
+.vf-vision-head p{color:var(--mute);font-size:14.5px;line-height:1.5}
+
+.vf-vision-stage{
+  display:grid;gap:18px;align-items:end;
+  grid-template-columns:1fr;
+}
+@media(min-width:900px){
+  .vf-vision-stage{grid-template-columns:1fr 220px;gap:22px;align-items:center}
+}
+
+/* Desktop browser frame */
+.vf-desk{
+  position:relative;border-radius:16px;overflow:hidden;
+  border:1px solid rgba(255,214,66,.22);
+  background:#0b101c;
+  box-shadow:
+    0 40px 90px -30px rgba(0,0,0,.85),
+    0 0 0 1px rgba(255,255,255,.04) inset,
+    0 0 60px -20px rgba(255,214,66,.18);
+  transform:perspective(1400px) rotateY(-4deg) rotateX(2deg);
+  transition:transform .5s cubic-bezier(.22,1,.36,1);
+}
+.vf-desk:hover{transform:perspective(1400px) rotateY(-1deg) rotateX(0deg) translateY(-4px)}
+.vf-desk-bar{
+  display:flex;align-items:center;gap:8px;padding:10px 12px;
+  background:linear-gradient(180deg,#161d30,#101628);border-bottom:1px solid rgba(255,255,255,.06);
+}
+.vf-desk-bar .dots{display:flex;gap:5px}
+.vf-desk-bar .dots i{width:8px;height:8px;border-radius:50%;display:block}
+.vf-desk-bar .dots i:nth-child(1){background:#ff5f57}
+.vf-desk-bar .dots i:nth-child(2){background:#febc2e}
+.vf-desk-bar .dots i:nth-child(3){background:#28c840}
+.vf-desk-url{
+  flex:1;margin-left:6px;padding:5px 10px;border-radius:7px;
+  background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.06);
+  font-family:var(--mono);font-size:10.5px;color:var(--gold-lt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.vf-desk-body{
+  position:relative;height:min(52vh,420px);overflow:hidden;
+  background:
+    radial-gradient(ellipse 70% 50% at 70% 10%, rgba(255,214,66,.1), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 10% 80%, rgba(255,140,0,.06), transparent 50%),
+    linear-gradient(180deg,#0a0f1c,#0d1424 40%,#0a0f1c);
+}
+
+/* Fake live page inside browser */
+.vf-live{padding:18px 20px 28px;display:grid;gap:14px;animation:vfLiveScroll 14s ease-in-out infinite}
+@keyframes vfLiveScroll{
+  0%,12%{transform:translateY(0)}
+  28%,40%{transform:translateY(-70px)}
+  55%,68%{transform:translateY(-150px)}
+  82%,94%{transform:translateY(-230px)}
+  100%{transform:translateY(0)}
+}
+@media(prefers-reduced-motion:reduce){.vf-live{animation:none}}
+
+.vf-live-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.vf-live-logo{font-family:var(--tight);font-weight:900;font-size:13px;color:#f5f5f7}
+.vf-live-logo span{color:var(--gold)}
+.vf-live-pill{
+  font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  color:#1a1205;background:var(--gold);padding:4px 8px;border-radius:999px;
+}
+.vf-live-hero{display:grid;gap:10px;grid-template-columns:1.1fr .9fr;align-items:center}
+@media(max-width:700px){.vf-live-hero{grid-template-columns:1fr}}
+.vf-live-kicker{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.vf-live-h{
+  font-family:var(--tight);font-weight:900;font-size:clamp(16px,2.2vw,22px);
+  line-height:1.15;color:#f5f5f7;margin:0;
+}
+.vf-live-h em{font-style:normal;color:var(--gold)}
+.vf-live-p{font-size:11px;color:#aab4c4;line-height:1.45;margin:0;max-width:28ch}
+.vf-live-cta{
+  display:inline-flex;align-items:center;justify-content:center;
+  margin-top:4px;padding:9px 12px;border-radius:9px;width:fit-content;
+  font-family:var(--tight);font-weight:900;font-size:11px;color:#1a1205;
+  background:linear-gradient(180deg,#FFE680,#FFD642 50%,#E2A93B);
+  box-shadow:0 8px 20px -8px rgba(255,140,0,.7);
+  animation:vfCtaGlow 2.4s ease-in-out infinite;
+}
+@keyframes vfCtaGlow{
+  0%,100%{box-shadow:0 8px 20px -8px rgba(255,140,0,.55)}
+  50%{box-shadow:0 10px 26px -6px rgba(255,140,0,.9),0 0 0 4px rgba(255,214,66,.12)}
+}
+.vf-live-vid{
+  aspect-ratio:16/10;border-radius:12px;border:1px solid rgba(255,214,66,.2);
+  background:
+    linear-gradient(145deg,rgba(255,214,66,.15),transparent 50%),
+    linear-gradient(180deg,#151c30,#0c111d);
+  display:grid;place-items:center;position:relative;overflow:hidden;
+}
+.vf-live-vid::before{
+  content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,.015) 2px,rgba(255,255,255,.015) 3px);
+}
+.vf-live-play{
+  width:36px;height:36px;border-radius:50%;background:var(--gold);position:relative;z-index:1;
+  box-shadow:0 0 0 8px rgba(255,214,66,.12);
+}
+.vf-live-play::after{
+  content:"";position:absolute;left:14px;top:11px;
+  border-left:11px solid #0a0f1c;border-top:7px solid transparent;border-bottom:7px solid transparent;
+}
+
+.vf-live-proof{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
+.vf-live-stat{
+  padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.03);
+}
+.vf-live-stat b{display:block;font-family:var(--tight);font-size:15px;color:var(--gold);line-height:1}
+.vf-live-stat span{font-size:9px;color:#8a93a6}
+
+.vf-live-offer{
+  margin-top:6px;padding:14px;border-radius:14px;
+  border:1px solid rgba(255,214,66,.25);
+  background:linear-gradient(160deg,rgba(255,214,66,.08),rgba(255,140,0,.03));
+  display:grid;gap:8px;
+}
+.vf-live-offer .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.vf-live-offer .name{font-size:11px;font-weight:700;color:#f5f5f7}
+.vf-live-offer .val{font-size:10px;color:#8a93a6;text-decoration:line-through}
+.vf-live-price{font-family:var(--tight);font-weight:900;font-size:28px;color:var(--gold);line-height:1}
+.vf-live-price s{font-size:14px;color:#6b7280;margin-right:8px;font-weight:700}
+
+.vf-live-checkout{
+  display:grid;gap:7px;padding:12px;border-radius:12px;
+  background:#0e1526;border:1px solid rgba(255,255,255,.07);
+}
+.vf-live-field{height:22px;border-radius:7px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.vf-live-pay{
+  height:28px;border-radius:8px;display:grid;place-items:center;
+  font-family:var(--tight);font-weight:900;font-size:11px;color:#1a1205;
+  background:linear-gradient(180deg,#FFE680,#FFD642);
+}
+
+/* Stage tabs */
+.vf-steps{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 0;
+}
+.vf-step{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:7px 11px;border-radius:999px;font-size:11px;font-weight:700;
+  color:var(--mute);border:1px solid var(--bd-soft);background:rgba(255,255,255,.02);
+  transition:color .25s,border-color .25s,background .25s,box-shadow .25s;
+}
+.vf-step.on{
+  color:#1a1205;background:linear-gradient(180deg,var(--gold-lt),var(--gold));
+  border-color:transparent;box-shadow:0 8px 20px -10px rgba(255,140,0,.7);
+}
+.vf-step b{font-family:var(--mono);font-size:10px;opacity:.8}
+
+/* Phone */
+.vf-phone{
+  width:min(200px,46vw);margin:0 auto;
+  border-radius:28px;padding:10px 9px 12px;
+  background:linear-gradient(160deg,#1a2238,#0c111d);
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 30px 60px -24px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.12);
+  transform:perspective(900px) rotateY(12deg) rotateZ(-2deg);
+  transition:transform .5s cubic-bezier(.22,1,.36,1);
+}
+.vf-phone:hover{transform:perspective(900px) rotateY(4deg) rotateZ(0)}
+.vf-phone-notch{
+  width:64px;height:8px;border-radius:999px;background:#05070d;margin:2px auto 8px;
+}
+.vf-phone-screen{
+  border-radius:18px;overflow:hidden;height:340px;
+  background:linear-gradient(180deg,#0a0f1c,#10182a);
+  border:1px solid rgba(255,255,255,.05);position:relative;
+}
+.vf-phone-scroll{padding:12px 10px;animation:vfPhoneScroll 12s ease-in-out infinite}
+@keyframes vfPhoneScroll{
+  0%,20%{transform:translateY(0)}
+  45%,65%{transform:translateY(-90px)}
+  85%,100%{transform:translateY(0)}
+}
+@media(prefers-reduced-motion:reduce){.vf-phone-scroll{animation:none}}
+.vf-ph-h{font-family:var(--tight);font-weight:900;font-size:15px;line-height:1.2;color:#f5f5f7;margin:6px 0}
+.vf-ph-h em{color:var(--gold);font-style:normal}
+.vf-ph-p{font-size:9.5px;color:#9da7b8;line-height:1.4;margin:0 0 8px}
+.vf-ph-vid{aspect-ratio:16/11;border-radius:10px;background:linear-gradient(145deg,#1a2236,#0d121f);border:1px solid rgba(255,214,66,.15);display:grid;place-items:center;margin-bottom:8px}
+.vf-ph-vid span{width:24px;height:24px;border-radius:50%;background:var(--gold);display:block;position:relative}
+.vf-ph-vid span::after{content:"";position:absolute;left:9px;top:7px;border-left:8px solid #0a0f1c;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.vf-ph-cta{display:block;text-align:center;padding:9px;border-radius:9px;font-weight:900;font-size:10px;color:#1a1205;background:linear-gradient(180deg,#FFE680,#FFD642);margin-bottom:8px}
+.vf-ph-chip{height:8px;border-radius:4px;background:rgba(255,255,255,.08);margin-bottom:5px}
+.vf-ph-chip.w60{width:60%}.vf-ph-chip.w80{width:80%}.vf-ph-chip.w40{width:40%}
+
+.vf-vision-note{
+  text-align:center;margin-top:16px;font-size:12.5px;color:var(--mute);
+}
+.vf-vision-note a{color:var(--gold);font-weight:700;border-bottom:1px solid rgba(255,214,66,.35)}
+
+/* Upgrade vault peeks */
+.vp-canvas{height:168px!important;padding-top:28px!important}
+.vp-canvas::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:18px;z-index:2;
+  background:linear-gradient(180deg,#1a2236,#12192b);border-bottom:1px solid rgba(255,255,255,.06);
+  background-image:radial-gradient(circle at 10px 9px,#ff5f57 3px,transparent 4px),
+    radial-gradient(circle at 22px 9px,#febc2e 3px,transparent 4px),
+    radial-gradient(circle at 34px 9px,#28c840 3px,transparent 4px),
+    linear-gradient(180deg,#1a2236,#12192b);
+}
+.vp:hover .vp-canvas{filter:brightness(1.08)}
+.vp-grid{gap:16px!important}
+@media(min-width:900px){
+  .vp:hover{transform:translateY(-6px) scale(1.02);z-index:2}
+}
+
+/* Funnel type cards — mini page preview */
+.fcard .fprev{
+  height:78px;border-radius:10px;margin:0 0 12px;overflow:hidden;position:relative;
+  border:1px solid rgba(255,214,66,.15);
+  background:linear-gradient(165deg,#10182a,#0a0f1c);
+}
+.fcard .fprev .fb{position:absolute;left:8px;right:8px;height:5px;border-radius:3px;background:rgba(255,255,255,.1)}
+.fcard .fprev .fb:nth-child(1){top:10px;width:40%}
+.fcard .fprev .fb:nth-child(2){top:22px;width:70%}
+.fcard .fprev .fb:nth-child(3){top:34px;width:55%}
+.fcard .fprev .fbox{
+  position:absolute;right:8px;top:10px;width:36%;height:42px;border-radius:6px;
+  background:linear-gradient(145deg,rgba(255,214,66,.2),rgba(255,140,0,.08));
+  border:1px solid rgba(255,214,66,.2);
+}
+.fcard .fprev .fcta{
+  position:absolute;left:8px;bottom:8px;height:12px;width:48%;border-radius:4px;background:var(--gold);
+}
 </style>
 </head>
 <body>
@@ -1530,6 +1763,88 @@ img,video{content-visibility:auto}
   <div class="scrollcue">Keep scrolling ↓</div>
 </div></section>
 
+<!-- FUNNEL VISION -->
+<section class="vf-vision" id="funnel-vision" aria-label="Preview of a finished funnel">
+  <div class="wrap">
+    <div class="vf-vision-head">
+      <p class="eyebrow"><span class="dot"></span>This is the product</p>
+      <h2>A finished funnel — the kind you can ship this week</h2>
+      <p>Not a template with your logo slapped on. Custom sections, your offer, your voice — paste-ready into the platform you already use.</p>
+    </div>
+
+    <div class="vf-vision-stage">
+      <div class="vf-desk" aria-hidden="true">
+        <div class="vf-desk-bar">
+          <div class="dots"><i></i><i></i><i></i></div>
+          <div class="vf-desk-url">yoursite.com/offer — live funnel</div>
+        </div>
+        <div class="vf-desk-body">
+          <div class="vf-live" id="vfLivePage">
+            <div class="vf-live-nav">
+              <div class="vf-live-logo">Your<span>Brand</span></div>
+              <div class="vf-live-pill">Founding offer</div>
+            </div>
+            <div class="vf-live-hero">
+              <div>
+                <div class="vf-live-kicker">For coaches &amp; consultants</div>
+                <h3 class="vf-live-h">Get clients from a page that <em>actually converts</em></h3>
+                <p class="vf-live-p">Custom-coded with AI. Live today. No $5k agency wait.</p>
+                <div class="vf-live-cta">Get Instant Access →</div>
+              </div>
+              <div class="vf-live-vid"><div class="vf-live-play"></div></div>
+            </div>
+            <div class="vf-live-proof">
+              <div class="vf-live-stat"><b>456</b><span>sales in 90 days*</span></div>
+              <div class="vf-live-stat"><b>~20m</b><span>to first page</span></div>
+              <div class="vf-live-stat"><b>50+</b><span>paste-ready sections</span></div>
+            </div>
+            <div class="vf-live-offer">
+              <div class="row"><span class="name">Playbook + Skill Library</span><span class="val">$244</span></div>
+              <div class="row"><span class="name">50+ Section Vault</span><span class="val">$197</span></div>
+              <div class="row"><span class="name">Community + bonuses</span><span class="val">$885</span></div>
+              <div class="row"><span class="vf-live-price"><s>$147</s>$4.97</span><span class="vf-live-cta" style="margin:0">Buy now</span></div>
+            </div>
+            <div class="vf-live-checkout">
+              <div class="vf-live-field"></div>
+              <div class="vf-live-field"></div>
+              <div class="vf-live-pay">COMPLETE ORDER →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vf-phone" aria-hidden="true">
+        <div class="vf-phone-notch"></div>
+        <div class="vf-phone-screen">
+          <div class="vf-phone-scroll">
+            <div class="vf-live-kicker">Mobile-first</div>
+            <div class="vf-ph-h">Your offer.<br><em>Their yes.</em></div>
+            <p class="vf-ph-p">Thumb-friendly CTA. Fast load. Looks custom — because it is.</p>
+            <div class="vf-ph-vid"><span></span></div>
+            <div class="vf-ph-cta">Yes — Get Access</div>
+            <div class="vf-ph-chip w80"></div>
+            <div class="vf-ph-chip w60"></div>
+            <div class="vf-ph-chip w40"></div>
+            <div class="vf-ph-chip w80"></div>
+            <div class="vf-ph-cta">Complete Order</div>
+            <div class="vf-ph-chip w60"></div>
+            <div class="vf-ph-chip w40"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vf-steps" id="vfVisionSteps" aria-hidden="true">
+      <span class="vf-step on" data-step="0"><b>01</b> Hero + VSL</span>
+      <span class="vf-step" data-step="1"><b>02</b> Proof</span>
+      <span class="vf-step" data-step="2"><b>03</b> Offer stack</span>
+      <span class="vf-step" data-step="3"><b>04</b> Checkout</span>
+    </div>
+    <p class="vf-vision-note">Every block above is the kind of section shipping in the vault — <a href="https://bridges-agency.com/order-6494">get the system for $4.97</a> and build yours.</p>
+  </div>
+</section>
+
+
 <!-- 1 · BEFORE -->
 <section class="before"><div class="narrow">
   <span class="tag">The ugly years</span>
@@ -1791,6 +2106,7 @@ img,video{content-visibility:auto}
 
         <div class="fcard">
           <span class="fcard-tag">Funnel</span>
+          <div class="fprev" aria-hidden="true"><i class="fb"></i><i class="fb"></i><i class="fb"></i><i class="fbox"></i><i class="fcta"></i></div>
           <div class="fcard-ic" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="2.5" y="3.5" width="19" height="13" rx="2" stroke="var(--gold)" stroke-width="1.6"/>
@@ -1804,6 +2120,7 @@ img,video{content-visibility:auto}
 
         <div class="fcard">
           <span class="fcard-tag">Funnel</span>
+          <div class="fprev" aria-hidden="true"><i class="fb"></i><i class="fb"></i><i class="fb"></i><i class="fbox"></i><i class="fcta"></i></div>
           <div class="fcard-ic" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M3 6.5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-11z" stroke="var(--gold)" stroke-width="1.6"/>
@@ -1817,6 +2134,7 @@ img,video{content-visibility:auto}
 
         <div class="fcard">
           <span class="fcard-tag">Funnel</span>
+          <div class="fprev" aria-hidden="true"><i class="fb"></i><i class="fb"></i><i class="fb"></i><i class="fbox"></i><i class="fcta"></i></div>
           <div class="fcard-ic" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="2.5" y="5" width="19" height="14" rx="2" stroke="var(--gold)" stroke-width="1.6"/>
@@ -1831,6 +2149,7 @@ img,video{content-visibility:auto}
 
         <div class="fcard">
           <span class="fcard-tag">Funnel</span>
+          <div class="fprev" aria-hidden="true"><i class="fb"></i><i class="fb"></i><i class="fb"></i><i class="fbox"></i><i class="fcta"></i></div>
           <div class="fcard-ic" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M5 3.5h9l5 5v12H5v-17z" stroke="var(--gold)" stroke-width="1.6" stroke-linejoin="round"/>
@@ -1844,6 +2163,7 @@ img,video{content-visibility:auto}
 
         <div class="fcard">
           <span class="fcard-tag">Funnel</span>
+          <div class="fprev" aria-hidden="true"><i class="fb"></i><i class="fb"></i><i class="fb"></i><i class="fbox"></i><i class="fcta"></i></div>
           <div class="fcard-ic" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="12" cy="12" r="8.4" stroke="var(--gold)" stroke-width="1.6"/>
@@ -1857,6 +2177,7 @@ img,video{content-visibility:auto}
 
         <div class="fcard">
           <span class="fcard-tag">Funnel</span>
+          <div class="fprev" aria-hidden="true"><i class="fb"></i><i class="fb"></i><i class="fb"></i><i class="fbox"></i><i class="fcta"></i></div>
           <div class="fcard-ic" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M5 14.5l4.2-1.2 7-7c.9-.9 2.4-1 3-.4.6.6.5 2.1-.4 3l-7 7L10.6 19l-1.7-1.7-2.2.6.6-2.2L5 14.5z" stroke="var(--gold)" stroke-width="1.6" stroke-linejoin="round"/>
@@ -2518,6 +2839,20 @@ img,video{content-visibility:auto}
   if (stickyBtn && stickyBtn.textContent.trim().length < 8) {
     stickyBtn.textContent = 'Build My First Page — $4.97';
   }
+})();
+</script>
+
+
+<script>
+(function(){
+  var steps = document.querySelectorAll('#vfVisionSteps .vf-step');
+  if (!steps.length) return;
+  var i = 0;
+  setInterval(function(){
+    steps.forEach(function(s){ s.classList.remove('on'); });
+    i = (i + 1) % steps.length;
+    steps[i].classList.add('on');
+  }, 3500);
 })();
 </script>
 
