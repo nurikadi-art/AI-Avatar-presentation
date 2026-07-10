@@ -1119,6 +1119,100 @@ img,video{content-visibility:auto}
   box-shadow:0 10px 30px rgba(255,214,66,.28);text-decoration:none;
 }
 @media(min-width:901px){.vf-sticky-buy{display:none}}
+
+/* === CONVERSION LAYER (palette unchanged) === */
+.vf-progress{
+  position:fixed;top:0;left:0;height:3px;width:0;z-index:10000;
+  background:linear-gradient(90deg,var(--gold-lt),var(--gold),var(--orange));
+  box-shadow:0 0 12px rgba(255,214,66,.45);pointer-events:none;
+}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.topbar .tb-buy{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:8px 14px;border-radius:9px;font-family:var(--tight);font-weight:900;font-size:13px;
+  color:#1a1205!important;background:linear-gradient(180deg,var(--gold-lt),var(--gold) 55%,var(--orange));
+  box-shadow:0 8px 18px -10px rgba(255,140,0,.65);white-space:nowrap;
+}
+.topbar .tb-meta{font-size:12px;color:var(--mute);text-align:right}
+@media(max-width:720px){.topbar .tb-meta{display:none}}
+
+.hero-buy{
+  max-width:560px;margin:22px auto 8px;text-align:center;
+}
+.hero-buy .price-anchor{
+  display:flex;align-items:baseline;justify-content:center;gap:10px;margin-bottom:10px;
+}
+.hero-buy .price-anchor .was{color:var(--dim);text-decoration:line-through;font-size:18px;font-weight:700}
+.hero-buy .price-anchor .now{
+  font-family:var(--tight);font-weight:900;font-size:42px;line-height:1;color:var(--gold);
+}
+.hero-buy .btn{max-width:420px;margin:0 auto;animation:vfCtaPulse 2.8s ease-in-out infinite}
+@keyframes vfCtaPulse{
+  0%,100%{box-shadow:0 14px 30px -12px rgba(255,140,0,.6),0 0 0 0 rgba(255,214,66,.0)}
+  50%{box-shadow:0 16px 34px -10px rgba(255,140,0,.75),0 0 0 6px rgba(255,214,66,.12)}
+}
+@media(prefers-reduced-motion:reduce){.hero-buy .btn{animation:none}}
+.trust-row{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px;margin-top:12px;
+}
+.trust-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 10px;border-radius:999px;font-size:11.5px;font-weight:700;
+  color:var(--body);background:rgba(255,255,255,.04);border:1px solid var(--bd-soft);
+}
+.trust-chip i{color:var(--gold);font-style:normal;font-weight:900}
+.proof-strip{
+  max-width:640px;margin:16px auto 0;padding:12px 14px;border-radius:12px;
+  background:rgba(255,214,66,.05);border:1px solid rgba(255,214,66,.18);
+  font-size:13.5px;color:var(--body);line-height:1.45;text-align:left;
+}
+.proof-strip strong{color:var(--tx)}
+.proof-strip .who{display:block;margin-top:6px;font-size:11.5px;color:var(--mute);font-family:var(--mono)}
+
+.btn-wrap .trust-row,.offerbox .trust-row,.finalcta .trust-row{margin-top:10px}
+.btn{position:relative}
+.btn .btn-sub{display:block;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;opacity:.78;margin-top:2px}
+
+/* sticky bar conversion boost */
+.sticky-bar{
+  padding-bottom:calc(10px + env(safe-area-inset-bottom));
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  background:rgba(10,15,28,.92)!important;border-top:1px solid rgba(255,214,66,.22);
+}
+.sticky-bar .btn, .sticky-bar a.btn, .sticky-bar .sb-cta{
+  font-size:15px!important;padding:12px 16px!important;min-height:46px;
+}
+.sticky-bar .sb-guarantee{display:block;font-size:11px;color:var(--mute);margin-top:2px}
+@media(max-width:900px){
+  .sticky-bar .sb-l{display:none}
+  .sticky-bar .wrap{display:flex;gap:10px;align-items:center}
+  .sticky-bar .sb-txt{flex:1;min-width:0}
+}
+
+/* exit intent */
+.vf-exit{
+  position:fixed;inset:0;z-index:20000;display:none;align-items:center;justify-content:center;
+  padding:18px;background:rgba(0,0,0,.72);
+}
+.vf-exit.open{display:flex}
+.vf-exit-card{
+  width:min(100%,420px);background:var(--card);border:1px solid rgba(255,214,66,.35);
+  border-radius:18px;padding:22px 20px;text-align:center;
+  box-shadow:0 30px 80px rgba(0,0,0,.55);
+}
+.vf-exit-card h3{font-size:24px;margin:0 0 8px;font-family:var(--tight)}
+.vf-exit-card p{color:var(--body);font-size:14.5px;line-height:1.5;margin:0 0 14px}
+.vf-exit-card .btn{margin-top:4px}
+.vf-exit-card .x{
+  position:absolute;right:14px;top:10px;font-size:22px;color:var(--mute);cursor:pointer;border:0;background:none;
+}
+.vf-exit-card{position:relative}
+
+/* FAQ: first open cue */
+.faq details:first-of-type summary{color:var(--gold-lt)}
+
+/* Hide duplicate custom sticky if original sticky-bar present */
+.vf-sticky-buy{display:none!important}
 </style>
 </head>
 <body>
@@ -1134,8 +1228,12 @@ img,video{content-visibility:auto}
         whole file into ONE GoHighLevel "Custom Code / HTML" element.
      ============================================================ -->
 
-<div class="topbar"><div class="wrap"><div class="logo">Vibe<span>Funnels</span></div><div>Questions? <a href="/cdn-cgi/l/email-protection#5930373f36193b2b303d3e3c2a74383e3c373a20773a3634"><span class="__cf_email__" data-cfemail="6c05020a032c0e1e05080b091f410d0b09020f15420f0301">[email&#160;protected]</span></a> &middot; Orders: <a href="tel:+14049143885">+1 404 914 3885</a></div></div></div>
-<div class="announce">⚡ Founding price: $4.97 today — goes to $147 once this batch fills. <span>No countdown clock, no fake timer.</span></div>
+<div class="topbar"><div class="wrap">
+  <div class="logo">Vibe<span>Funnels</span></div>
+  <div class="tb-meta">Orders: <a href="tel:+14049143885">+1 404 914 3885</a></div>
+  <a class="tb-buy" href="https://bridges-agency.com/order-6494">Get access — $4.97</a>
+</div></div>
+<div class="announce">⚡ Founding price locked at $4.97 — returns to $147 when this batch fills. <span>No fake timer. Instant access.</span></div>
 
 <header class="hero"><div class="wrap">
   <p class="eyebrow" style="justify-content:center">For coaches, freelancers, consultants, agencies &amp; local owners who do great work but stay invisible</p>
@@ -1233,7 +1331,23 @@ img,video{content-visibility:auto}
 })();
 </script>
 
-  <div class="hero-mocks"><div class="bundle"><svg class="cover bm-l2" viewBox="0 0 128 182" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Component Vault cover"><rect x="0" y="0" width="128" height="182" fill="url(#hdhbfV)"/><rect x="0" y="116" width="128" height="66" fill="url(#bdhbfV)"/><rect x="0" y="116" width="128" height="1.6" fill="#fff" opacity="0.5"/><rect x="16" y="13" width="26" height="26" rx="7" fill="url(#lghbfV)"/><rect x="16" y="13" width="26" height="26" rx="7" fill="none" stroke="#fff" stroke-opacity="0.45"/><text x="29" y="29" text-anchor="middle" font-family="Inter Tight,sans-serif" font-weight="900" font-size="9" fill="#1a1205">VF</text><rect x="84" y="14" width="30" height="14" rx="3.5" fill="#fff" fill-opacity="0.08" stroke="#fff" stroke-opacity="0.12"/><text x="99" y="24" text-anchor="middle" font-family="ui-monospace,monospace" font-weight="800" font-size="7.5" letter-spacing="0.5" fill="#fff" fill-opacity="0.75">.HTML</text><text x="17" y="58" font-family="ui-monospace,monospace" font-weight="700" font-size="8" letter-spacing="1.2" fill="#fff" fill-opacity="0.5">M03 · Vault</text><text y="74" font-family="Inter Tight,sans-serif" font-weight="800" font-size="13" letter-spacing="-0.3" fill="#fff"><tspan x="17" dy="0">Component</tspan><tspan x="17" dy="15">Vault</tspan></text><text x="17" y="158" font-family="Inter Tight,sans-serif" font-weight="900" font-size="11" fill="#1a1205">50+ sections</text><text x="17" y="171" font-family="Inter,sans-serif" font-weight="700" font-size="8.5" fill="#1a1205" fill-opacity="0.72">Paste-ready</text><rect x="0" y="0" width="7" height="182" fill="url(#sphbfV)"/><rect x="0" y="0" width="128" height="182" fill="url(#glhbfV)"/></svg><svg class="cover bm-l" viewBox="0 0 128 182" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Claude Skill Library cover"><rect x="0" y="0" width="128" height="182" fill="url(#hdhbfS)"/><rect x="0" y="116" width="128" height="66" fill="url(#bdhbfS)"/><rect x="0" y="116" width="128" height="1.6" fill="#fff" opacity="0.5"/><rect x="16" y="13" width="26" height="26" rx="7" fill="url(#lghbfS)"/><rect x="16" y="13" width="26" height="26" rx="7" fill="none" stroke="#fff" stroke-opacity="0.45"/><text x="29" y="29" text-anchor="middle" font-family="Inter Tight,sans-serif" font-weight="900" font-size="9" fill="#1a1205">VF</text><rect x="84" y="14" width="30" height="14" rx="3.5" fill="#fff" fill-opacity="0.08" stroke="#fff" stroke-opacity="0.12"/><text x="99" y="24" text-anchor="middle" font-family="ui-monospace,monospace" font-weight="800" font-size="7.5" letter-spacing="0.5" fill="#fff" fill-opacity="0.75">.MD</text><text x="17" y="58" font-family="ui-monospace,monospace" font-weight="700" font-size="8" letter-spacing="1.2" fill="#fff" fill-opacity="0.5">M02 · AI</text><text y="74" font-family="Inter Tight,sans-serif" font-weight="800" font-size="13" letter-spacing="-0.3" fill="#fff"><tspan x="17" dy="0">Claude Skill</tspan><tspan x="17" dy="15">Library</tspan></text><text x="17" y="158" font-family="Inter Tight,sans-serif" font-weight="900" font-size="11" fill="#1a1205">12 files</text><text x="17" y="171" font-family="Inter,sans-serif" font-weight="700" font-size="8.5" fill="#1a1205" fill-opacity="0.72">Claude skills</text><rect x="0" y="0" width="7" height="182" fill="url(#sphbfS)"/><rect x="0" y="0" width="128" height="182" fill="url(#glhbfS)"/></svg><svg class="cover bm-c" viewBox="0 0 128 182" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The VibeFunnel Playbook cover"><rect x="0" y="0" width="128" height="182" fill="url(#hdhbfP)"/><rect x="0" y="116" width="128" height="66" fill="url(#bdhbfP)"/><rect x="0" y="116" width="128" height="1.6" fill="#fff" opacity="0.5"/><rect x="16" y="13" width="26" height="26" rx="7" fill="url(#lghbfP)"/><rect x="16" y="13" width="26" height="26" rx="7" fill="none" stroke="#fff" stroke-opacity="0.45"/><text x="29" y="29" text-anchor="middle" font-family="Inter Tight,sans-serif" font-weight="900" font-size="9" fill="#1a1205">VF</text><rect x="84" y="14" width="30" height="14" rx="3.5" fill="#fff" fill-opacity="0.08" stroke="#fff" stroke-opacity="0.12"/><text x="99" y="24" text-anchor="middle" font-family="ui-monospace,monospace" font-weight="800" font-size="7.5" letter-spacing="0.5" fill="#fff" fill-opacity="0.75">PDF</text><text x="17" y="58" font-family="ui-monospace,monospace" font-weight="700" font-size="8" letter-spacing="1.2" fill="#fff" fill-opacity="0.5">M01 · Core</text><text y="74" font-family="Inter Tight,sans-serif" font-weight="800" font-size="13" letter-spacing="-0.3" fill="#fff"><tspan x="17" dy="0">The VibeFunnel</tspan><tspan x="17" dy="15">Playbook</tspan></text><text x="17" y="158" font-family="Inter Tight,sans-serif" font-weight="900" font-size="11" fill="#1a1205">47 pages</text><text x="17" y="171" font-family="Inter,sans-serif" font-weight="700" font-size="8.5" fill="#1a1205" fill-opacity="0.72">PDF</text><rect x="0" y="0" width="7" height="182" fill="url(#sphbfP)"/><rect x="0" y="0" width="128" height="182" fill="url(#glhbfP)"/></svg><svg class="cover bm-r" viewBox="0 0 128 182" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Skool Community cover"><rect x="0" y="0" width="128" height="182" fill="url(#hdhbfK)"/><rect x="0" y="116" width="128" height="66" fill="url(#bdhbfK)"/><rect x="0" y="116" width="128" height="1.6" fill="#fff" opacity="0.5"/><rect x="16" y="13" width="26" height="26" rx="7" fill="url(#lghbfK)"/><rect x="16" y="13" width="26" height="26" rx="7" fill="none" stroke="#fff" stroke-opacity="0.45"/><text x="29" y="30" text-anchor="middle" font-family="Inter Tight,sans-serif" font-weight="900" font-size="13" fill="#1a1205">S</text><rect x="84" y="14" width="30" height="14" rx="3.5" fill="#fff" fill-opacity="0.08" stroke="#fff" stroke-opacity="0.12"/><text x="99" y="24" text-anchor="middle" font-family="ui-monospace,monospace" font-weight="800" font-size="7.5" letter-spacing="0.5" fill="#fff" fill-opacity="0.75">Skool</text><text x="17" y="58" font-family="ui-monospace,monospace" font-weight="700" font-size="8" letter-spacing="1.2" fill="#fff" fill-opacity="0.5">M04 · Community</text><text y="74" font-family="Inter Tight,sans-serif" font-weight="800" font-size="13" letter-spacing="-0.3" fill="#fff"><tspan x="17" dy="0">Skool</tspan><tspan x="17" dy="15">Community</tspan></text><text x="17" y="158" font-family="Inter Tight,sans-serif" font-weight="900" font-size="11" fill="#1a1205">Lifetime</text><text x="17" y="171" font-family="Inter,sans-serif" font-weight="700" font-size="8.5" fill="#1a1205" fill-opacity="0.72">Weekly builds</text><rect x="0" y="0" width="7" height="182" fill="url(#sphbfK)"/><rect x="0" y="0" width="128" height="182" fill="url(#glhbfK)"/></svg><svg class="cover bm-r2" viewBox="0 0 128 182" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Weekly Office Hours cover"><rect x="0" y="0" width="128" height="182" fill="url(#hdhbfB)"/><rect x="0" y="116" width="128" height="66" fill="url(#bdhbfB)"/><rect x="0" y="116" width="128" height="1.6" fill="#fff" opacity="0.5"/><rect x="16" y="13" width="26" height="26" rx="7" fill="url(#lghbfB)"/><rect x="16" y="13" width="26" height="26" rx="7" fill="none" stroke="#fff" stroke-opacity="0.45"/><text x="29" y="29" text-anchor="middle" font-family="Inter Tight,sans-serif" font-weight="900" font-size="9" fill="#1a1205">VF</text><rect x="84" y="14" width="30" height="14" rx="3.5" fill="#fff" fill-opacity="0.08" stroke="#fff" stroke-opacity="0.12"/><text x="99" y="24" text-anchor="middle" font-family="ui-monospace,monospace" font-weight="800" font-size="7.5" letter-spacing="0.5" fill="#fff" fill-opacity="0.75">Live</text><text x="17" y="58" font-family="ui-monospace,monospace" font-weight="700" font-size="8" letter-spacing="1.2" fill="#fff" fill-opacity="0.5">B01 · Founder</text><text y="74" font-family="Inter Tight,sans-serif" font-weight="800" font-size="13" letter-spacing="-0.3" fill="#fff"><tspan x="17" dy="0">Weekly Office</tspan><tspan x="17" dy="15">Hours</tspan></text><text x="17" y="158" font-family="Inter Tight,sans-serif" font-weight="900" font-size="11" fill="#1a1205">Fridays</text><text x="17" y="171" font-family="Inter,sans-serif" font-weight="700" font-size="8.5" fill="#1a1205" fill-opacity="0.72">Live with Nurik</text><rect x="0" y="0" width="7" height="182" fill="url(#sphbfB)"/><rect x="0" y="0" width="128" height="182" fill="url(#glhbfB)"/></svg></div></div>
+  
+  <div class="hero-buy" id="hero-buy">
+    <div class="price-anchor"><span class="was">$147</span><span class="now">$4.97</span></div>
+    <a class="btn" href="https://bridges-agency.com/order-6494">Yes — Get Instant Access for $4.97<small>Instant download · start your first page today</small></a>
+    <div class="trust-row">
+      <span class="trust-chip"><i>✓</i> No coding required</span>
+      <span class="trust-chip"><i>✓</i> Keep-everything 30-day guarantee</span>
+      <span class="trust-chip"><i>✓</i> One payment · no subscription</span>
+    </div>
+    <div class="proof-strip">
+      <strong>“I almost closed the page… Glad I didn’t.”</strong>
+      Used the system to build a first app in 2 hours — something that felt like weeks of work.
+      <span class="who">— Marcus T., Entrepreneur · individual result, not typical</span>
+    </div>
+  </div>
+
+<div class="hero-mocks"><div class="bundle"><svg class="cover bm-l2" viewBox="0 0 128 182" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Component Vault cover"><rect x="0" y="0" width="128" height="182" fill="url(#hdhbfV)"/><rect x="0" y="116" width="128" height="66" fill="url(#bdhbfV)"/><rect x="0" y="116" width="128" height="1.6" fill="#fff" opacity="0.5"/><rect x="16" y="13" width="26" height="26" rx="7" fill="url(#lghbfV)"/><rect x="16" y="13" width="26" height="26" rx="7" fill="none" stroke="#fff" stroke-opacity="0.45"/><text x="29" y="29" text-anchor="middle" font-family="Inter Tight,sans-serif" font-weight="900" font-size="9" fill="#1a1205">VF</text><rect x="84" y="14" width="30" height="14" rx="3.5" fill="#fff" fill-opacity="0.08" stroke="#fff" stroke-opacity="0.12"/><text x="99" y="24" text-anchor="middle" font-family="ui-monospace,monospace" font-weight="800" font-size="7.5" letter-spacing="0.5" fill="#fff" fill-opacity="0.75">.HTML</text><text x="17" y="58" font-family="ui-monospace,monospace" font-weight="700" font-size="8" letter-spacing="1.2" fill="#fff" fill-opacity="0.5">M03 · Vault</text><text y="74" font-family="Inter Tight,sans-serif" font-weight="800" font-size="13" letter-spacing="-0.3" fill="#fff"><tspan x="17" dy="0">Component</tspan><tspan x="17" dy="15">Vault</tspan></text><text x="17" y="158" font-family="Inter Tight,sans-serif" font-weight="900" font-size="11" fill="#1a1205">50+ sections</text><text x="17" y="171" font-family="Inter,sans-serif" font-weight="700" font-size="8.5" fill="#1a1205" fill-opacity="0.72">Paste-ready</text><rect x="0" y="0" width="7" height="182" fill="url(#sphbfV)"/><rect x="0" y="0" width="128" height="182" fill="url(#glhbfV)"/></svg><svg class="cover bm-l" viewBox="0 0 128 182" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Claude Skill Library cover"><rect x="0" y="0" width="128" height="182" fill="url(#hdhbfS)"/><rect x="0" y="116" width="128" height="66" fill="url(#bdhbfS)"/><rect x="0" y="116" width="128" height="1.6" fill="#fff" opacity="0.5"/><rect x="16" y="13" width="26" height="26" rx="7" fill="url(#lghbfS)"/><rect x="16" y="13" width="26" height="26" rx="7" fill="none" stroke="#fff" stroke-opacity="0.45"/><text x="29" y="29" text-anchor="middle" font-family="Inter Tight,sans-serif" font-weight="900" font-size="9" fill="#1a1205">VF</text><rect x="84" y="14" width="30" height="14" rx="3.5" fill="#fff" fill-opacity="0.08" stroke="#fff" stroke-opacity="0.12"/><text x="99" y="24" text-anchor="middle" font-family="ui-monospace,monospace" font-weight="800" font-size="7.5" letter-spacing="0.5" fill="#fff" fill-opacity="0.75">.MD</text><text x="17" y="58" font-family="ui-monospace,monospace" font-weight="700" font-size="8" letter-spacing="1.2" fill="#fff" fill-opacity="0.5">M02 · AI</text><text y="74" font-family="Inter Tight,sans-serif" font-weight="800" font-size="13" letter-spacing="-0.3" fill="#fff"><tspan x="17" dy="0">Claude Skill</tspan><tspan x="17" dy="15">Library</tspan></text><text x="17" y="158" font-family="Inter Tight,sans-serif" font-weight="900" font-size="11" fill="#1a1205">12 files</text><text x="17" y="171" font-family="Inter,sans-serif" font-weight="700" font-size="8.5" fill="#1a1205" fill-opacity="0.72">Claude skills</text><rect x="0" y="0" width="7" height="182" fill="url(#sphbfS)"/><rect x="0" y="0" width="128" height="182" fill="url(#glhbfS)"/></svg><svg class="cover bm-c" viewBox="0 0 128 182" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The VibeFunnel Playbook cover"><rect x="0" y="0" width="128" height="182" fill="url(#hdhbfP)"/><rect x="0" y="116" width="128" height="66" fill="url(#bdhbfP)"/><rect x="0" y="116" width="128" height="1.6" fill="#fff" opacity="0.5"/><rect x="16" y="13" width="26" height="26" rx="7" fill="url(#lghbfP)"/><rect x="16" y="13" width="26" height="26" rx="7" fill="none" stroke="#fff" stroke-opacity="0.45"/><text x="29" y="29" text-anchor="middle" font-family="Inter Tight,sans-serif" font-weight="900" font-size="9" fill="#1a1205">VF</text><rect x="84" y="14" width="30" height="14" rx="3.5" fill="#fff" fill-opacity="0.08" stroke="#fff" stroke-opacity="0.12"/><text x="99" y="24" text-anchor="middle" font-family="ui-monospace,monospace" font-weight="800" font-size="7.5" letter-spacing="0.5" fill="#fff" fill-opacity="0.75">PDF</text><text x="17" y="58" font-family="ui-monospace,monospace" font-weight="700" font-size="8" letter-spacing="1.2" fill="#fff" fill-opacity="0.5">M01 · Core</text><text y="74" font-family="Inter Tight,sans-serif" font-weight="800" font-size="13" letter-spacing="-0.3" fill="#fff"><tspan x="17" dy="0">The VibeFunnel</tspan><tspan x="17" dy="15">Playbook</tspan></text><text x="17" y="158" font-family="Inter Tight,sans-serif" font-weight="900" font-size="11" fill="#1a1205">47 pages</text><text x="17" y="171" font-family="Inter,sans-serif" font-weight="700" font-size="8.5" fill="#1a1205" fill-opacity="0.72">PDF</text><rect x="0" y="0" width="7" height="182" fill="url(#sphbfP)"/><rect x="0" y="0" width="128" height="182" fill="url(#glhbfP)"/></svg><svg class="cover bm-r" viewBox="0 0 128 182" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Skool Community cover"><rect x="0" y="0" width="128" height="182" fill="url(#hdhbfK)"/><rect x="0" y="116" width="128" height="66" fill="url(#bdhbfK)"/><rect x="0" y="116" width="128" height="1.6" fill="#fff" opacity="0.5"/><rect x="16" y="13" width="26" height="26" rx="7" fill="url(#lghbfK)"/><rect x="16" y="13" width="26" height="26" rx="7" fill="none" stroke="#fff" stroke-opacity="0.45"/><text x="29" y="30" text-anchor="middle" font-family="Inter Tight,sans-serif" font-weight="900" font-size="13" fill="#1a1205">S</text><rect x="84" y="14" width="30" height="14" rx="3.5" fill="#fff" fill-opacity="0.08" stroke="#fff" stroke-opacity="0.12"/><text x="99" y="24" text-anchor="middle" font-family="ui-monospace,monospace" font-weight="800" font-size="7.5" letter-spacing="0.5" fill="#fff" fill-opacity="0.75">Skool</text><text x="17" y="58" font-family="ui-monospace,monospace" font-weight="700" font-size="8" letter-spacing="1.2" fill="#fff" fill-opacity="0.5">M04 · Community</text><text y="74" font-family="Inter Tight,sans-serif" font-weight="800" font-size="13" letter-spacing="-0.3" fill="#fff"><tspan x="17" dy="0">Skool</tspan><tspan x="17" dy="15">Community</tspan></text><text x="17" y="158" font-family="Inter Tight,sans-serif" font-weight="900" font-size="11" fill="#1a1205">Lifetime</text><text x="17" y="171" font-family="Inter,sans-serif" font-weight="700" font-size="8.5" fill="#1a1205" fill-opacity="0.72">Weekly builds</text><rect x="0" y="0" width="7" height="182" fill="url(#sphbfK)"/><rect x="0" y="0" width="128" height="182" fill="url(#glhbfK)"/></svg><svg class="cover bm-r2" viewBox="0 0 128 182" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Weekly Office Hours cover"><rect x="0" y="0" width="128" height="182" fill="url(#hdhbfB)"/><rect x="0" y="116" width="128" height="66" fill="url(#bdhbfB)"/><rect x="0" y="116" width="128" height="1.6" fill="#fff" opacity="0.5"/><rect x="16" y="13" width="26" height="26" rx="7" fill="url(#lghbfB)"/><rect x="16" y="13" width="26" height="26" rx="7" fill="none" stroke="#fff" stroke-opacity="0.45"/><text x="29" y="29" text-anchor="middle" font-family="Inter Tight,sans-serif" font-weight="900" font-size="9" fill="#1a1205">VF</text><rect x="84" y="14" width="30" height="14" rx="3.5" fill="#fff" fill-opacity="0.08" stroke="#fff" stroke-opacity="0.12"/><text x="99" y="24" text-anchor="middle" font-family="ui-monospace,monospace" font-weight="800" font-size="7.5" letter-spacing="0.5" fill="#fff" fill-opacity="0.75">Live</text><text x="17" y="58" font-family="ui-monospace,monospace" font-weight="700" font-size="8" letter-spacing="1.2" fill="#fff" fill-opacity="0.5">B01 · Founder</text><text y="74" font-family="Inter Tight,sans-serif" font-weight="800" font-size="13" letter-spacing="-0.3" fill="#fff"><tspan x="17" dy="0">Weekly Office</tspan><tspan x="17" dy="15">Hours</tspan></text><text x="17" y="158" font-family="Inter Tight,sans-serif" font-weight="900" font-size="11" fill="#1a1205">Fridays</text><text x="17" y="171" font-family="Inter,sans-serif" font-weight="700" font-size="8.5" fill="#1a1205" fill-opacity="0.72">Live with Nurik</text><rect x="0" y="0" width="7" height="182" fill="url(#sphbfB)"/><rect x="0" y="0" width="128" height="182" fill="url(#glhbfB)"/></svg></div></div>
   <p class="hero-keep">Keep reading — just to see what this page is capable of. <span>↓</span></p>
 </div></header>
 
@@ -2187,7 +2301,7 @@ img,video{content-visibility:auto}
     <div class="sb-mini"><svg class="cover m1" viewBox="0 0 128 182" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VF cover"><rect x="0" y="0" width="128" height="182" fill="url(#hdc17)"/><rect x="0" y="116" width="128" height="66" fill="url(#bdc17)"/><rect x="0" y="116" width="128" height="1.6" fill="#fff" opacity="0.5"/><rect x="16" y="13" width="26" height="26" rx="7" fill="url(#lgc17)"/><rect x="16" y="13" width="26" height="26" rx="7" fill="none" stroke="#fff" stroke-opacity="0.45"/><text x="29" y="29" text-anchor="middle" font-family="Inter Tight,sans-serif" font-weight="900" font-size="9" fill="#1a1205">VF</text><rect x="17" y="60" width="62" height="7" rx="3.5" fill="#fff" fill-opacity="0.30"/><rect x="17" y="73" width="44" height="7" rx="3.5" fill="#fff" fill-opacity="0.16"/><rect x="0" y="0" width="7" height="182" fill="url(#spc17)"/><rect x="0" y="0" width="128" height="182" fill="url(#glc17)"/></svg><svg class="cover m2" viewBox="0 0 128 182" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VF cover"><rect x="0" y="0" width="128" height="182" fill="url(#hdc18)"/><rect x="0" y="116" width="128" height="66" fill="url(#bdc18)"/><rect x="0" y="116" width="128" height="1.6" fill="#fff" opacity="0.5"/><rect x="16" y="13" width="26" height="26" rx="7" fill="url(#lgc18)"/><rect x="16" y="13" width="26" height="26" rx="7" fill="none" stroke="#fff" stroke-opacity="0.45"/><text x="29" y="29" text-anchor="middle" font-family="Inter Tight,sans-serif" font-weight="900" font-size="9" fill="#1a1205">VF</text><rect x="17" y="60" width="62" height="7" rx="3.5" fill="#fff" fill-opacity="0.30"/><rect x="17" y="73" width="44" height="7" rx="3.5" fill="#fff" fill-opacity="0.16"/><rect x="0" y="0" width="7" height="182" fill="url(#spc18)"/><rect x="0" y="0" width="128" height="182" fill="url(#glc18)"/></svg></div>
     <div class="sb-txt"><b>The complete VibeFunnels system</b><span><span class="pr">$4.97 today</span> · $1,326 value · 30-day guarantee</span></div>
   </div>
-  <a href="https://bridges-agency.com/order-6494" class="btn">Get VibeFunnels — $4.97</a>
+  <a href="https://bridges-agency.com/order-6494" class="btn">Get Instant Access — $4.97</a>
 </div></div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
@@ -2274,6 +2388,76 @@ img,video{content-visibility:auto}
   };
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
+})();
+</script>
+
+
+<div class="vf-progress" id="vfProgress" aria-hidden="true"></div>
+<div class="vf-exit" id="vfExit" role="dialog" aria-modal="true" aria-labelledby="vfExitTitle">
+  <div class="vf-exit-card">
+    <button class="x" type="button" id="vfExitClose" aria-label="Close">×</button>
+    <h3 id="vfExitTitle">Wait — $4.97 is the whole risk.</h3>
+    <p>Take the complete system. Build a page. If it’s not for you in 30 days, get a refund and <strong style="color:var(--tx)">keep every file anyway</strong>.</p>
+    <div class="price-anchor" style="display:flex;justify-content:center;gap:10px;align-items:baseline;margin-bottom:10px">
+      <span style="text-decoration:line-through;color:var(--dim);font-weight:700">$147</span>
+      <span style="font-family:var(--tight);font-weight:900;font-size:34px;color:var(--gold)">$4.97</span>
+    </div>
+    <a class="btn" href="https://bridges-agency.com/order-6494">Yes — Get Instant Access<small>Keep-everything guarantee</small></a>
+    <div class="trust-row">
+      <span class="trust-chip"><i>✓</i> Instant download</span>
+      <span class="trust-chip"><i>✓</i> No subscription</span>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var CHECKOUT = 'https://bridges-agency.com/order-6494';
+  var progress = document.getElementById('vfProgress');
+  var onScroll = function(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    if (progress) progress.style.width = p + '%';
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Add trust row under major offer CTAs missing one
+  document.querySelectorAll('.offerbox .btn, .finalcta .btn, .btn-wrap .btn, .cb-btn .btn').forEach(function(btn){
+    var parent = btn.parentElement;
+    if (!parent) return;
+    if (parent.querySelector('.trust-row')) return;
+    if (btn.closest('.hero-buy')) return;
+    var row = document.createElement('div');
+    row.className = 'trust-row';
+    row.innerHTML = '<span class="trust-chip"><i>✓</i> Instant access</span><span class="trust-chip"><i>✓</i> 30-day keep-everything guarantee</span><span class="trust-chip"><i>✓</i> One-time $4.97</span>';
+    parent.appendChild(row);
+  });
+
+  // Exit intent (desktop, once)
+  var exit = document.getElementById('vfExit');
+  var shown = false;
+  try { shown = sessionStorage.getItem('vf_exit') === '1'; } catch(e){}
+  function openExit(){
+    if (shown || !exit) return;
+    if (window.matchMedia('(max-width:900px)').matches) return;
+    shown = true;
+    try { sessionStorage.setItem('vf_exit','1'); } catch(e){}
+    exit.classList.add('open');
+  }
+  document.addEventListener('mouseout', function(e){
+    if (e.clientY <= 0) openExit();
+  });
+  var close = document.getElementById('vfExitClose');
+  if (close) close.addEventListener('click', function(){ exit.classList.remove('open'); });
+  if (exit) exit.addEventListener('click', function(e){ if (e.target === exit) exit.classList.remove('open'); });
+
+  // Soft mobile re-prompt: after 45% scroll, ensure sticky visible (original handles show class)
+  // Enhance sticky CTA label if empty-ish
+  var stickyBtn = document.querySelector('.sticky-bar a.btn, .sticky-bar .sb-cta, .sticky-bar a[href*="order-6494"]');
+  if (stickyBtn && stickyBtn.textContent.trim().length < 8) {
+    stickyBtn.textContent = 'Get Instant Access — $4.97';
+  }
 })();
 </script>
 
