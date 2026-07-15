@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@theme {
+  --color-cream: #FBF5EC;   /* page background */
+  --color-paper: #FFFDFA;   /* cards / surfaces */
+  --color-sand:  #EADFCE;   /* hairline borders */
+  --color-ink:   #4A1B0C;   /* primary text */
+  --color-rust:  #993C1D;   /* secondary text / accents */
+  --color-latte: #B8865B;   /* muted text */
+  --color-coral: #D85A30;   /* primary action */
+  --color-sun:   #EF9F27;   /* highlights */
+}
