@@ -1,12 +1,25 @@
 import Fastify, { type FastifyInstance } from 'fastify';
 import cookie from '@fastify/cookie';
 import rateLimit from '@fastify/rate-limit';
+import multipart from '@fastify/multipart';
+import fastifyStatic from '@fastify/static';
+import { existsSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { Me } from '@shared/types';
 import { registerAuthRoutes } from './routes/auth.js';
 import { registerBoardRoutes } from './routes/boards';
 import { registerListRoutes } from './routes/lists';
 import { registerCardRoutes } from './routes/cards';
+import { registerCommentRoutes } from './routes/comments';
+import { registerAttachmentRoutes } from './routes/attachments';
+import { registerSearchRoutes } from './routes/search';
+import { registerNotificationRoutes } from './routes/notifications';
+import { registerUserRoutes } from './routes/users';
+import { registerAdminRoutes } from './routes/admin';
 import type { Db } from './db/index.js';
+
+const clientDist = join(dirname(fileURLToPath(import.meta.url)), '../../client/dist');
 
 export interface Emit {
   boardChanged(boardId: string, byUserId: string): void;
@@ -41,8 +54,6 @@ export function buildApp(deps: AppDeps): FastifyInstance {
 
   app.register(cookie, { secret: process.env.SESSION_SECRET ?? 'dev-session-secret' });
 
-  // Rate-limit is applied per-route (login). Register it inside an encapsulated
-  // plugin and await it so its onRoute hook is active before routes are added.
   app.register(async (instance) => {
     await instance.register(rateLimit, { global: false });
     registerAuthRoutes(instance);
@@ -52,6 +63,25 @@ export function buildApp(deps: AppDeps): FastifyInstance {
   registerBoardRoutes(app, ctx);
   registerListRoutes(app, ctx);
   registerCardRoutes(app, ctx);
+
+  app.register(multipart, { limits: { fileSize: 20 * 1024 * 1024 }, throwFileSizeLimit: false });
+  registerCommentRoutes(app, ctx);
+  registerAttachmentRoutes(app, ctx);
+  registerSearchRoutes(app, ctx);
+  registerNotificationRoutes(app, ctx);
+  registerUserRoutes(app, ctx);
+  registerAdminRoutes(app, ctx);
+
+  if (existsSync(clientDist)) {
+    app.register(fastifyStatic, { root: clientDist });
+    app.setNotFoundHandler((req, reply) => {
+      if (req.raw.url?.startsWith('/api')) {
+        reply.code(404).send({ error: 'Not found' });
+        return;
+      }
+      reply.sendFile('index.html');
+    });
+  }
 
   return app;
 }
