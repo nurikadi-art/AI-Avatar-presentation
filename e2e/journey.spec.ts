@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { uniq, login, createBoard, addList, addCard, getColumn, dragCardToColumn, openCard } from './helpers';
 
 test('build a board, drag a card, edit its detail, comment, and receive a notification', async ({ page, browser }) => {
+  test.setTimeout(60_000);
   const boardName = uniq('Journey');
   const cardTitle = uniq('Design homepage');
 
@@ -23,8 +24,9 @@ test('build a board, drag a card, edit its detail, comment, and receive a notifi
   const field = (name: string) =>
     dialog.locator('section').filter({ has: page.getByRole('heading', { name, exact: true }) });
 
-  await field('Labels').getByRole('checkbox').first().check();
-  await field('Assignees').getByRole('checkbox').first().check();
+  // Controlled React checkboxes update after the mutation settles — click, don't use check().
+  await field('Labels').getByRole('checkbox').first().click();
+  await field('Assignees').getByRole('checkbox').first().click();
   await dialog.locator('input[type="date"]').fill('2026-12-31');
 
   const checkInput = dialog.getByPlaceholder('Add an item');

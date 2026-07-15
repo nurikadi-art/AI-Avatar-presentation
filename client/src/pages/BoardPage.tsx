@@ -35,7 +35,7 @@ export function BoardPage() {
   const moveCardMut = useMoveCard(boardId);
   const moveListMut = useMoveList(boardId);
   const createList = useCreateList(boardId);
-  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 5 } }));
+  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 8 } }));
   const [addingList, setAddingList] = useState(false);
   const [listName, setListName] = useState('');
 

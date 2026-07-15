@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('serves the built app shell', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/login');
   await expect(page.getByRole('heading', { name: /company trello/i })).toBeVisible();
 });
 

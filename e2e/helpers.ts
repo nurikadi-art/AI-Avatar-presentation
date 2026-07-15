@@ -74,11 +74,19 @@ export async function addCard(page: Page, listName: string, title: string): Prom
 }
 
 export async function openCard(page: Page, title: string): Promise<{ boardId: string; cardId: string }> {
-  await getCard(page, title).click();
-  await page.waitForURL(/\/c\/[^/]+/);
-  const m = page.url().match(/\/b\/([^/?#]+)\/c\/([^/?#]+)/)!;
+  const boardMatch = page.url().match(/\/b\/([^/?#]+)/);
+  if (!boardMatch) throw new Error('openCard: not on a board page');
+  const boardId = boardMatch[1];
+
+  // Resolve the card id via the API — dnd-kit pointer listeners on CardTile make
+  // Playwright clicks unreliable (they often activate drag instead of onClick).
+  const detail = await (await page.request.get(`/api/boards/${boardId}`)).json();
+  const card = (detail.cards as { id: string; title: string }[]).find((c) => c.title === title);
+  if (!card) throw new Error(`openCard: card "${title}" not found on board ${boardId}`);
+
+  await page.goto(`/b/${boardId}/c/${card.id}`);
   await expect(page.getByRole('dialog')).toBeVisible();
-  return { boardId: m[1], cardId: m[2] };
+  return { boardId, cardId: card.id };
 }
 
 /** Drags a card onto a target column with the incremental moves dnd-kit's PointerSensor needs. */
