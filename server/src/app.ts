@@ -1,12 +1,12 @@
 import Fastify, { type FastifyInstance } from 'fastify';
 import cookie from '@fastify/cookie';
 import rateLimit from '@fastify/rate-limit';
-import type { BetterSQLite3Database } from 'drizzle-orm/better-sqlite3';
-import * as schema from './db/schema.js';
 import type { Me } from '@shared/types';
 import { registerAuthRoutes } from './routes/auth.js';
-
-type Db = BetterSQLite3Database<typeof schema>;
+import { registerBoardRoutes } from './routes/boards';
+import { registerListRoutes } from './routes/lists';
+import { registerCardRoutes } from './routes/cards';
+import type { Db } from './db/index.js';
 
 export interface Emit {
   boardChanged(boardId: string, byUserId: string): void;
@@ -17,6 +17,8 @@ export interface AppDeps {
   dataDir: string;
   emit: Emit;
 }
+
+export type RouteCtx = AppDeps;
 
 declare module 'fastify' {
   interface FastifyInstance {
@@ -45,6 +47,11 @@ export function buildApp(deps: AppDeps): FastifyInstance {
     await instance.register(rateLimit, { global: false });
     registerAuthRoutes(instance);
   });
+
+  const ctx: RouteCtx = { db: deps.db, dataDir: deps.dataDir, emit: deps.emit };
+  registerBoardRoutes(app, ctx);
+  registerListRoutes(app, ctx);
+  registerCardRoutes(app, ctx);
 
   return app;
 }
